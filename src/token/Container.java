@@ -17,5 +17,7 @@ public abstract class Container{
 
     public abstract boolean equals(Container ob);
 
+    public abstract void clean();
+
     public abstract void clean(Color color);
 }

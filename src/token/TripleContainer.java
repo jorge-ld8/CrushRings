@@ -67,6 +67,12 @@ public final class TripleContainer extends Container{
         }
     }
 
+    public void clean(){
+        setSmallToken(new NullToken());
+        setMidToken(new NullToken());
+        setBigToken(new NullToken());
+    }
+
     public void clean(Color color){
         if(getSmallToken().getColor() == color)
             setSmallToken(new NullToken());
