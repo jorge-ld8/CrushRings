@@ -60,10 +60,10 @@ public class TileTest {
         myMarcador.showCont();
         myTile3.take(testRing);
         myTile4.take(new Ring(Color.GREEN, Size.MEDIUM));
-        myTile5.take(new Ring(Color.GREEN, Size.BIG));
-        myTile9.take(new Ring(Color.GREEN, Size.SMALL));
-        myTile6.take(new Ring(Color.GREEN, Size.MEDIUM));
-        System.out.println(myRule.match(myTile6, Color.GREEN, myMarcador)? "HAY MATCH": "NO HAY MATCH");
+        myTile6.take(new Ring(Color.GREEN, Size.BIG));
+        myTile8.take(new Ring(Color.GREEN, Size.SMALL));
+        myTile9.take(new Ring(Color.GREEN, Size.MEDIUM));
+        System.out.println(myRule.match(myTile9, Color.GREEN, myMarcador)? "HAY MATCH": "NO HAY MATCH");
         myMarcador.showCont();
     }
 }

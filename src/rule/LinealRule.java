@@ -34,7 +34,6 @@ public class LinealRule<T extends Token, D extends Direction> implements Rule<T,
             if(t.equals(currTile)){
                  boolean linea = matchlineal(currTile, d) && matchlineal(t, d.opposite());
                  if(linea){
-                     System.out.println(d);
                      retbool = true;
                      actualMarcador.increment();
                      actualMarcador.update(t, color, d);

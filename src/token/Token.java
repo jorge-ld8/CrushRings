@@ -23,12 +23,5 @@ public abstract class Token {
     //draw the token
     public abstract void draw();
 
-    //return True if empty, false otherwise
-
     public abstract boolean isNil();
-
-    public void clean(){
-        this.color = Color.EMPTY;
-        this.size = Size.EMPTY;
-    }
 }

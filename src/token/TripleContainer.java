@@ -20,18 +20,18 @@ public final class TripleContainer extends Container{
     public Token getSmallToken() { return tokens.get(0);}
 
     private void setSmallToken(Token smallToken) {
-        if(getSmallToken().isNil())
-            tokens.add(0, smallToken);
+        tokens.remove(0);
+        tokens.add(0, smallToken);
     }
 
     private void setMidToken(Token midToken) {
-        if(getMidToken().isNil())
-            tokens.add(0, midToken);
+        tokens.remove(1);
+        tokens.add(1, midToken);
     }
 
     private void setBigToken(Token bigToken) {
-        if(getBigToken().isNil())
-            tokens.add(0, bigToken);
+        tokens.remove(2);
+        tokens.add(2, bigToken);
     }
 
     public boolean equals(Container ob) {

@@ -26,9 +26,10 @@ public class Marcador<T extends Token, D extends Direction>{
         HashMap<D, Cell<T, D>> neighboursTile = t.getNeighbours();
         for(D d : neighboursTile.keySet()){
             if(d == direction){
+                Cell<T, D> currTile = neighboursTile.get(d);
                 increment();
-                update(neighboursTile.get(d), color, d);
-                neighboursTile.get(d).clean(color);
+                update(currTile, color, d);
+                currTile.clean(color);
             }
         }
     }
