@@ -4,6 +4,7 @@ import java.util.Objects;
 import direction.Direction;
 import token.*;
 
+//HOLA
 /*clase abstracta Tile que representa una casilla abstracta, de la cual si se desea impmlementar
 un una nueva forma de casilla solo se debe extender de esta y sobreescribir el metodo draw
 */
