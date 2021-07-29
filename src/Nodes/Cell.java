@@ -9,13 +9,17 @@ import token.*;
 /*clase abstracta Tile que representa una casilla abstracta, de la cual si se desea impmlementar
 un una nueva forma de casilla solo se debe extender de esta y sobreescribir el metodo draw
 */
-public abstract class Cell<T extends Token, D extends Direction> extends Nodo<T> {
+//NOTA: abstraer take so it can take any container
+public abstract class Cell<T extends Token, D extends Direction>{
+    private final Container value;
     private final Neighbourhood<T, D> n;
 
-    public Cell(Container valor){
-        super(valor);
+    public Cell(Container value){
+        this.value = value;
         n = new Neighbourhood<>();
     }
+
+    public Container getValue(){return value;}
 
     public Neighbourhood<T, D> getN(){
         return n;
@@ -27,41 +31,34 @@ public abstract class Cell<T extends Token, D extends Direction> extends Nodo<T>
 
     public void addNeighbour(Cell<T, D> otherNode, D dir){getN().addNeighbour(otherNode, dir);}
 
-    public void genAdjacency(Cell<T, D> otherNode, D direction){
+    public void genAdjacency(Cell<T, D> otherNode, D direction) {
         addNeighbour(otherNode, direction);
         otherNode.addNeighbour(this, direction.opposite());
     }
 
-    public void showNeighbours(){
-        HashMap<D, Cell<T, D>> neighbours = getNeighbours();
-        System.out.printf("Actual tile: %s... neighbours->%n", getValor());
-        for(D d: neighbours.keySet())
-            System.out.printf("\t%s: %s%n", d, neighbours.get(d));
+    //Overloading of method take so a variable of type container can be passed as an argument
+    public boolean take(Container container){
+        for(Token token: container.getTokens()){
+            if(!getValue().take(token))
+                return false;
+        }
+        return true;
     }
 
-    public void take(T token){
-        getValor().take(token);
-    }
+    public boolean take(T token){ return getValue().take(token);}
 
     public void clean(){
-        getValor().clean();
+        getValue().clean();
     }
 
     public void clean(Color color){
-        getValor().clean(color);
+        getValue().clean(color);
     }
 
-    public ArrayList<Color> getColors(){
-        return getValor().getColors();
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(n);
-    }
+    public ArrayList<Color> getColors(){ return getValue().getColors();}
 
     public boolean equals(Cell<T, D> otherTile){
-        return getValor().equals(otherTile.getValor());
+        return getValue().equals(otherTile.getValue());
     }
 
     public abstract void draw();

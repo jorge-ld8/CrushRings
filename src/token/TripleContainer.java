@@ -3,17 +3,24 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 
-//limitar la size
 public final class TripleContainer extends Container{
+    public TripleContainer(Token...ts){
+        if(ts.length>3)
+            throw new IllegalArgumentException("ERROR. Tokens don't fit in the container");
+        tokens = new ArrayList<>();
+        tokens.add(new NullToken());
+        tokens.add(new NullToken());
+        tokens.add(new NullToken());
+        for(Token token: ts)
+            this.take(token);
+    }
+
     public TripleContainer(){
         tokens = new ArrayList<>();
         tokens.add(new NullToken());
         tokens.add(new NullToken());
         tokens.add(new NullToken());
     }
-
-    @Override
-    public int getSize(){return 3;}
 
     public Token getBigToken(){return tokens.get(2);}
     public Token getMidToken(){return tokens.get(1); }
@@ -51,20 +58,22 @@ public final class TripleContainer extends Container{
     }
 
     @Override
-    public void take(Token token) {
+    public boolean take(Token token) {
         switch (token.getSize()) {
-            case SMALL:
+            case SMALL -> {
+                if (!getSmallToken().isNil()) return false;
                 setSmallToken(token);
-                break;
-            case MEDIUM:
+            }
+            case MEDIUM -> {
+                if (!getMidToken().isNil()) return false;
                 setMidToken(token);
-                break;
-            case BIG:
+            }
+            case BIG -> {
+                if (!getBigToken().isNil()) return false;
                 setBigToken(token);
-                break;
-            default:
-                break;
+            }
         }
+        return true;
     }
 
     public void clean(){

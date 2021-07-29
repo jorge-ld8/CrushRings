@@ -18,8 +18,6 @@ public abstract class Token {
 
     public void setSize(Size size){this.size = size;}
 
-    public boolean isSize(Size size){return getSize() == size;}
-
     //draw the token
     public abstract void draw();
 

@@ -6,10 +6,10 @@ import board.*;
 import rule.*;
 
 public abstract class MatchGame<B extends Board>{
-    private GameState gamestate;
-    private B board;
-    private Rule rule;
-    private Marcador marcador;
+    private GameState gamestate; //X
+    private B board; //X
+    private Rule rule; //X
+    private Marcador marcador; //X
     private Mostrador mostrador;
 
     public abstract void initGame();

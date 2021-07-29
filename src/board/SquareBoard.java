@@ -1,38 +1,42 @@
 package board;
 
-import Nodes.Cell;
-import Nodes.RoundTile;
+import Nodes.*;
 import direction.Octagonal;
-import token.Color;
 import token.Ring;
-import token.Size;
 import token.TripleContainer;
-
 import java.util.ArrayList;
 
-public class SquareBoard extends Board<Ring, Octagonal, RoundTile<Ring, Octagonal>> {
+public class SquareBoard extends Board<Ring, Octagonal, RoundCell<Ring, Octagonal>> {
     public SquareBoard(){
-        //tiles of the board
+        //cell of the board
         super();
-        final RoundTile<Ring, Octagonal> myTile1 = new RoundTile<>(new TripleContainer());
-        final RoundTile<Ring, Octagonal> myTile2 = new RoundTile<>(new TripleContainer());
-        final RoundTile<Ring, Octagonal> myTile3 = new RoundTile<>(new TripleContainer()); //esquina superior derecha
-        final RoundTile<Ring, Octagonal> myTile4 = new RoundTile<>(new TripleContainer());
-        final RoundTile<Ring, Octagonal> myTile5 = new RoundTile<>(new TripleContainer()); //medio
-        final RoundTile<Ring, Octagonal> myTile6 = new RoundTile<>(new TripleContainer());
-        final RoundTile<Ring, Octagonal> myTile7 = new RoundTile<>(new TripleContainer()); //esquina inferior izquierda
-        final RoundTile<Ring, Octagonal> myTile8 = new RoundTile<>(new TripleContainer());
-        final RoundTile<Ring, Octagonal> myTile9 = new RoundTile<>(new TripleContainer()); //esquina inferior derecha
+        for(int i=0; i<=8; i++)
+            board.add(i, new RoundCell<>(new TripleContainer()));
 
-        board.add(myTile1);
-        board.add(myTile2);
-        board.add(myTile3);
-        board.add(myTile4);
-        board.add(myTile5);
-        board.add(myTile6);
-        board.add(myTile7);
-        board.add(myTile8);
-        board.add(myTile9);
+        //adjacencies of cells created at runtime
+        getCell(1).genAdjacency(getCell(2), Octagonal.RIGHT);
+        getCell(1).genAdjacency(getCell(4), Octagonal.DOWN);
+        getCell(1).genAdjacency(getCell(5), Octagonal.DOWN_RIGHT);
+
+        getCell(2).genAdjacency(getCell(3), Octagonal.RIGHT);
+        getCell(2).genAdjacency(getCell(5), Octagonal.DOWN);
+
+        getCell(3).genAdjacency(getCell(6), Octagonal.DOWN);
+        getCell(3).genAdjacency(getCell(5), Octagonal.DOWN_LEFT);
+
+        getCell(4).genAdjacency(getCell(7), Octagonal.DOWN);
+        getCell(4).genAdjacency(getCell(5), Octagonal.RIGHT);
+
+        getCell(6).genAdjacency(getCell(9), Octagonal.DOWN);
+        getCell(6).genAdjacency(getCell(5), Octagonal.LEFT);
+
+        getCell(7).genAdjacency(getCell(8), Octagonal.RIGHT);
+        getCell(7).genAdjacency(getCell(5), Octagonal.UP_RIGHT);
+
+        getCell(8).genAdjacency(getCell(9), Octagonal.RIGHT);
+        getCell(8).genAdjacency(getCell(5), Octagonal.UP);
+
+        getCell(9).genAdjacency(getCell(5), Octagonal.UP_LEFT);
     }
 
     @Override

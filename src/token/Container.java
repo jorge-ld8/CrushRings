@@ -4,16 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+//Clase abstracta que representa un contenedor de fichas de un tamaño no definido
 public abstract class Container{
     protected ArrayList<Token> tokens;
 
-    public abstract void take(Token token);
-
-    public abstract int getSize();
+    public abstract boolean take(Token token);
 
     public abstract boolean sameVal();
-
-    public List<Token> getTokens(){return tokens;}
 
     public abstract boolean equals(Container ob);
 
@@ -24,10 +21,18 @@ public abstract class Container{
     public ArrayList<Color> getColors(){
         ArrayList<Color> colorsList = new ArrayList<>();
         for(Token token: tokens) {
-            Color currColor = token.getColor();
-            if(currColor != null)
+            if(!token.isNil())
                 colorsList.add(token.getColor());
         }
         return colorsList;
+    }
+
+    public ArrayList<Token> getTokens() {
+        ArrayList<Token> tokensList = new ArrayList<>();
+        for (Token token : tokens) {
+            if (!token.isNil())
+                tokensList.add(token);
+        }
+        return tokensList;
     }
 }

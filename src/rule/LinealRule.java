@@ -20,7 +20,7 @@ public class LinealRule<T extends Token, D extends Direction> implements Rule<T,
 
     //helper method to match(Cell<T, D> t)
     private boolean matchtriple(Cell<T, D> t){
-        return t.getValor().sameVal();
+        return t.getValue().sameVal();
     }
 
     public boolean match(Cell<T, D> cell, Marcador<T, D> actualMarcador) {
@@ -30,6 +30,7 @@ public class LinealRule<T extends Token, D extends Direction> implements Rule<T,
             cell.clean();
             return true;
         }
+
         ArrayList<Color> colorsList = cell.getColors();
         for(Color color: colorsList) {
             System.out.println(color);
@@ -51,4 +52,23 @@ public class LinealRule<T extends Token, D extends Direction> implements Rule<T,
         return retbool;
     }
 }
+
+/*
+public boolean match(Cell<T, D> cell){
+    ArrayList<Color> colorsList = cell.getColors();
+    for(Color color: colorsList){
+        ver si hay match por cada color
+        HashMap<D, Cell<T, D>> map = cell.getNeighbours():
+        for(D d: map.keySet()){
+            Cell<T D> neighbourCell = map.get(d);
+            if(cell.equals(neighbourCell){
+                boolean isLinealMatch = matchlineal(neighbourCell, d) && matchlineal(cell, d.opposite);
+                if(isLinealMatch) return true;
+            }
+        }
+    }
+    return false;
+}
+ */
+
 
