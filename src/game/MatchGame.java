@@ -28,13 +28,11 @@ public abstract class MatchGame<B extends Board>{
         return gamestate;
     }
 
-    public Marcador getMarcador() {
-        return marcador;
-    }
-
     public Mostrador getMostrador() {
         return mostrador;
     }
+
+    public Marcador getMarcador(){ return marcador;}
 
     public Rule getRule() {
         return rule;

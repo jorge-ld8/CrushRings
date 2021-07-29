@@ -2,7 +2,6 @@ package game;
 import Nodes.*;
 import token.*;
 import direction.*;
-
 import java.util.HashMap;
 
 public class Marcador<T extends Token, D extends Direction>{
@@ -22,8 +21,8 @@ public class Marcador<T extends Token, D extends Direction>{
         cont+=pointVal;
     }
 
-    public void update(Cell<T, D> t, Color color, D direction){
-        HashMap<D, Cell<T, D>> neighboursTile = t.getNeighbours();
+    public void update(Cell<T, D> cell, Color color, D direction){
+        HashMap<D, Cell<T, D>> neighboursTile = cell.getNeighbours();
         for(D d : neighboursTile.keySet()){
             if(d == direction){
                 Cell<T, D> currTile = neighboursTile.get(d);

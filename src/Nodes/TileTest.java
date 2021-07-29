@@ -63,8 +63,10 @@ public class TileTest {
         myTile6.take(new Ring(Color.GREEN, Size.BIG));
         myTile8.take(new Ring(Color.GREEN, Size.SMALL));
         myTile9.take(new Ring(Color.GREEN, Size.MEDIUM));
-        System.out.println(myRule.match(myTile9, Color.GREEN, myMarcador)? "HAY MATCH": "NO HAY MATCH");
+        System.out.println(myRule.match(myTile9, myMarcador)? "HAY MATCH": "NO HAY MATCH");
         myMarcador.showCont();
+        for(RoundTile<Ring, Octagonal> token: tiles)
+            System.out.println(token);
     }
 }
 

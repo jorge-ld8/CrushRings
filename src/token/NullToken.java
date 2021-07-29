@@ -7,5 +7,8 @@ public class NullToken extends Token{
     }
 
     @Override
-    public void draw(){;}
+    public void draw(){}
+
+    @Override
+    public String toString(){ return "EMPTY";}
 }

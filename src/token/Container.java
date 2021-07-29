@@ -20,4 +20,14 @@ public abstract class Container{
     public abstract void clean();
 
     public abstract void clean(Color color);
+
+    public ArrayList<Color> getColors(){
+        ArrayList<Color> colorsList = new ArrayList<>();
+        for(Token token: tokens) {
+            Color currColor = token.getColor();
+            if(currColor != null)
+                colorsList.add(token.getColor());
+        }
+        return colorsList;
+    }
 }

@@ -1,4 +1,5 @@
 package Nodes;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Objects;
 import direction.Direction;
@@ -42,8 +43,16 @@ public abstract class Cell<T extends Token, D extends Direction> extends Nodo<T>
         getValor().take(token);
     }
 
+    public void clean(){
+        getValor().clean();
+    }
+
     public void clean(Color color){
         getValor().clean(color);
+    }
+
+    public ArrayList<Color> getColors(){
+        return getValor().getColors();
     }
 
     @Override
