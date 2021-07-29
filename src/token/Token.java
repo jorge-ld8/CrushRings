@@ -21,5 +21,5 @@ public abstract class Token {
     //draw the token
     public abstract void draw();
 
-    public abstract boolean isNil();
+    public abstract boolean isNotNil();
 }

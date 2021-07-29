@@ -18,7 +18,7 @@ public final class Ring extends Token{
     }
 
     @Override
-    public boolean isNil() { return false;}
+    public boolean isNotNil() { return true;}
 
     @Override
     public String toString(){

@@ -21,7 +21,7 @@ public abstract class Container{
     public ArrayList<Color> getColors(){
         ArrayList<Color> colorsList = new ArrayList<>();
         for(Token token: tokens) {
-            if(!token.isNil())
+            if(token.isNotNil())
                 colorsList.add(token.getColor());
         }
         return colorsList;
@@ -30,7 +30,7 @@ public abstract class Container{
     public ArrayList<Token> getTokens() {
         ArrayList<Token> tokensList = new ArrayList<>();
         for (Token token : tokens) {
-            if (!token.isNil())
+            if (token.isNotNil())
                 tokensList.add(token);
         }
         return tokensList;

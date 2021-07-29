@@ -61,15 +61,15 @@ public final class TripleContainer extends Container{
     public boolean take(Token token) {
         switch (token.getSize()) {
             case SMALL -> {
-                if (!getSmallToken().isNil()) return false;
+                if (getSmallToken().isNotNil()) return false;
                 setSmallToken(token);
             }
             case MEDIUM -> {
-                if (!getMidToken().isNil()) return false;
+                if (getMidToken().isNotNil()) return false;
                 setMidToken(token);
             }
             case BIG -> {
-                if (!getBigToken().isNil()) return false;
+                if (getBigToken().isNotNil()) return false;
                 setBigToken(token);
             }
         }
