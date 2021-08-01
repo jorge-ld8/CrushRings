@@ -51,6 +51,4 @@ public abstract class MatchGame<T extends Token, D extends Direction, C extends 
     }
 
     public abstract void updateGame();
-
-    public abstract void makeAMove();
 }
