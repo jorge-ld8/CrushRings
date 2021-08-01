@@ -21,12 +21,14 @@ public class Marcador<T extends Token, D extends Direction>{
         cont+=pointVal;
     }
 
+    public void increment(int incRate){ cont+=pointVal*incRate;}
+
     public void update(Cell<T, D> cell, Color color, D direction){
         HashMap<D, Cell<T, D>> neighboursTile = cell.getNeighbours();
         for(D d : neighboursTile.keySet()){
             if(d == direction){
                 Cell<T, D> currTile = neighboursTile.get(d);
-                increment();
+                increment(currTile.getColor(color));
                 update(currTile, color, d);
                 currTile.clean(color);
             }

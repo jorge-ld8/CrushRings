@@ -6,6 +6,7 @@ import token.*;
 import direction.*;
 
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 //implementar metodos de juego
@@ -29,24 +30,39 @@ public class CrushRingsGame extends MatchGame<Ring, Octagonal, RoundCell<Ring, O
     private void mainGame(){
         Scanner myInput = new Scanner(System.in);
         //game main loop
+        getMostrador().showMostrador();
         do{
             Container<Ring> currToken;
             RoundCell<Ring, Octagonal> currCell;
-            getMostrador().showMostrador();
+            int indContainer = 0, indCell = 0;
             do{
-                System.out.print("Introduzca indice de ficha que quiere elegir: ");
-                int indContainer = myInput.nextInt();
+                do {
+                    try {
+                        System.out.print("Introduzca indice de ficha que quiere elegir: ");
+                        indContainer = myInput.nextInt();
+                    }catch(InputMismatchException e){
+                        System.out.println("ENTER A NUMBER");
+                    }
+                    myInput.nextLine();
+                }while(indContainer<1 || indContainer >3);
                 currToken = getMostrador().getContainer(indContainer);
-                System.out.print("Introduzca indice de la casilla que quiere elegir: ");
-                int indCell = myInput.nextInt();
+                do{
+                    try {
+                        System.out.print("Introduzca indice de la casilla que quiere elegir: ");
+                        indCell = myInput.nextInt();
+                    }catch(InputMismatchException e){
+                        System.out.println("ENTER A NUMBER");
+                    }
+                }while(indCell <1 || indCell>9);
                 currCell = getBoard().getCell(indCell);
             }while(!getBoard().placeTokenAtCell(currToken, currCell));
-            if(getRule().match(currCell, getMarcador())) System.out.println("Hay match!");
             getMostrador().update(currToken);
-            getMarcador().showCont();
+            if(getRule().match(currCell, getMarcador())) System.out.println("Hay match!");
             getBoard().showBoard();
+            getMarcador().showCont();
             if(getMostrador().isEmpty())
                 getMostrador().fill();
+            getMostrador().showMostrador();
             updateGame();
         }while(getGamestate() == GameState.GOING);
     }
@@ -62,11 +78,9 @@ public class CrushRingsGame extends MatchGame<Ring, Octagonal, RoundCell<Ring, O
         ArrayList<Container<Ring>> MostradorList = getMostrador().mostrador;
 
         for(Container<Ring> currContainer: MostradorList){
-            if(!getBoard().isAPlay(currContainer)) {
-                setGamestate(GameState.LOST);
-                break;
-            }
+            if(currContainer.isNotEmpty() && getBoard().isAPlay(currContainer)) return;
         }
+        setGamestate(GameState.LOST);
     }
 
     @Override

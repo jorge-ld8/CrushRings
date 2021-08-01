@@ -50,6 +50,18 @@ public final class TripleContainer<T extends Token> extends Container<T>{
         return false;
     }
 
+    public boolean equals(Container<T> ob, Color color){
+        for(Color currColor: getColors()){
+            if(currColor == color) {
+                for (Color otherColor : ob.getColors()) {
+                    if(otherColor == currColor)
+                        return true;
+                }
+            }
+        }
+        return false;
+    }
+
     public boolean sameVal() {
         return getSmallToken().equals(getMidToken()) &&
                 getSmallToken().equals(getBigToken()) &&

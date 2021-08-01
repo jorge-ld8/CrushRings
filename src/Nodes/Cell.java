@@ -45,6 +45,14 @@ public abstract class Cell<T extends Token, D extends Direction>{
         return getValue().isPlayable(container);
     }
 
+    public int getColor(Color color){
+        int cont=0;
+        for(Color currColor: getColors()) {
+             if(currColor == color)cont++;
+        }
+        return cont;
+    }
+
     public void clean(){
         getValue().clean();
     }
@@ -59,6 +67,10 @@ public abstract class Cell<T extends Token, D extends Direction>{
 
     public boolean equals(Cell<T, D> otherTile){
         return getValue().equals(otherTile.getValue());
+    }
+
+    public boolean equals(Cell<T, D> otherCell, Color currColor){
+        return getValue().equals(otherCell.getValue(), currColor);
     }
 
     public abstract void draw();

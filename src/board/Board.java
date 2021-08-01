@@ -23,7 +23,8 @@ public abstract class Board<T extends Token, D extends Direction, C extends Cell
         queue.add(currCell);
         while(queue.size()>0){
             currCell = queue.remove(0);
-            if(currCell.isPlayable(container)) return true;
+            if(currCell.isPlayable(container))
+                return true;
             HashMap<D, Cell<T, D>> neighbours = currCell.getNeighbours();
             for(D dir: neighbours.keySet()){
                 Cell<T, D> nextCell = neighbours.get(dir);

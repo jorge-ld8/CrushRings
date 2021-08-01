@@ -18,6 +18,8 @@ public abstract class Container<T extends Token>{
 
     public abstract boolean equals(Container<T> ob);
 
+    public abstract boolean equals(Container<T> ob, Color color);
+
     public abstract void clean();
 
     public abstract void clean(Color color);
