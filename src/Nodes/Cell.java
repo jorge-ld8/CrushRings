@@ -11,15 +11,15 @@ un una nueva forma de casilla solo se debe extender de esta y sobreescribir el m
 */
 //NOTA: abstraer take so it can take any container
 public abstract class Cell<T extends Token, D extends Direction>{
-    private final Container value;
+    private final Container<T> value;
     private final Neighbourhood<T, D> n;
 
-    public Cell(Container value){
+    public Cell(Container<T> value){
         this.value = value;
         n = new Neighbourhood<>();
     }
 
-    public Container getValue(){return value;}
+    public Container<T> getValue(){return value;}
 
     public Neighbourhood<T, D> getN(){
         return n;
@@ -37,19 +37,19 @@ public abstract class Cell<T extends Token, D extends Direction>{
     }
 
     //Overloading of method take so a variable of type container can be passed as an argument
-    public boolean take(Container container){
-        for(Token token: container.getTokens()){
-            if(!getValue().take(token))
-                return false;
-        }
-        return true;
+    public boolean take(Container<T> container) {
+        return getValue().take(container);
     }
 
-    public boolean take(T token){ return getValue().take(token);}
+    public boolean isPlayable(Container<T> container){
+        return getValue().isPlayable(container);
+    }
 
     public void clean(){
         getValue().clean();
     }
+
+    public boolean sameVal(){return getValue().sameVal();}
 
     public void clean(Color color){
         getValue().clean(color);

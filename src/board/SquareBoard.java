@@ -38,9 +38,4 @@ public class SquareBoard extends Board<Ring, Octagonal, RoundCell<Ring, Octagona
 
         getCell(9).genAdjacency(getCell(5), Octagonal.UP_LEFT);
     }
-
-    @Override
-    public boolean isAPlay(){
-        return true;
-    }
 }

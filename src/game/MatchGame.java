@@ -5,16 +5,16 @@ import Nodes.*;
 import board.*;
 import rule.*;
 
-public abstract class MatchGame<B extends Board>{
+public abstract class MatchGame<T extends Token, D extends Direction, C extends Cell<T,D>, B extends Board<T, D, C>>{
     private GameState gamestate; //X
     private B board; //X
-    private Rule rule; //X
+    private Rule<T, D> rule; //X
     private Marcador marcador; //X
-    private Mostrador mostrador;
+    private Mostrador<T> mostrador;
 
     public abstract void initGame();
 
-    public void setRule(Rule rule){ this.rule = rule;}
+    public void setRule(Rule<T, D> rule){ this.rule = rule;}
 
     public void setBoard(B board){
         this.board = board;
@@ -28,13 +28,13 @@ public abstract class MatchGame<B extends Board>{
         return gamestate;
     }
 
-    public Mostrador getMostrador() {
+    public Mostrador<T> getMostrador() {
         return mostrador;
     }
 
-    public Marcador getMarcador(){ return marcador;}
+    public Marcador<T, D> getMarcador(){ return marcador;}
 
-    public Rule getRule() {
+    public Rule<T, D> getRule() {
         return rule;
     }
 
