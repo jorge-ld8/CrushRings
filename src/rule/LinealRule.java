@@ -24,12 +24,13 @@ public class LinealRule<T extends Token, D extends Direction> implements Rule<T,
     private boolean matchtriple(Cell<T, D> t){ return t.sameVal();}
 
     public boolean match(Cell<T, D> cell, Marcador<T, D> actualMarcador) {
-        boolean retbool = false, finalbool = false;
+        boolean retbool, finalbool = false;
 
         if(matchtriple(cell)){
             cell.clean();
             return true;
         }
+
         ArrayList<Color> colorsList = cell.getColors();
         for(Color color: colorsList) {
             retbool=false;

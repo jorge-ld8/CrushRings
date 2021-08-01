@@ -6,10 +6,10 @@ import board.*;
 import rule.*;
 
 public abstract class MatchGame<T extends Token, D extends Direction, C extends Cell<T,D>, B extends Board<T, D, C>>{
-    private GameState gamestate; //X
-    private B board; //X
-    private Rule<T, D> rule; //X
-    private Marcador marcador; //X
+    private GameState gamestate;
+    private B board;
+    private Rule<T, D> rule;
+    private Marcador<T, D> marcador;
     private Mostrador<T> mostrador;
 
     public abstract void initGame();
@@ -50,5 +50,5 @@ public abstract class MatchGame<T extends Token, D extends Direction, C extends 
         this.mostrador = mostrador;
     }
 
-    public abstract void updateGame();
+    public abstract void updateGame(); //method that modifies the gamestate
 }
