@@ -1,7 +1,7 @@
 package token;
 
-public class NullToken extends Token{
-    @Override
+public class NullToken {
+    /*@Override
     public boolean isNotNil() {return false;}
 
     @Override
@@ -9,4 +9,5 @@ public class NullToken extends Token{
 
     @Override
     public String toString(){ return "EMPTY";}
+     */
 }

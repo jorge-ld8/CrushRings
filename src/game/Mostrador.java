@@ -9,8 +9,8 @@ import java.util.Random;
 public abstract class Mostrador<T extends Token>{
     protected ArrayList<Container<T>> mostrador;
 
-    public Mostrador(int size){
-        mostrador = new ArrayList<>(size);
+    public Mostrador(){
+        mostrador = new ArrayList<>();
     }
 
     public boolean isEmpty(){return size()==0;}
@@ -23,7 +23,7 @@ public abstract class Mostrador<T extends Token>{
         System.out.println("Fichas en Mostrador: ");
         int cont=1;
         for(Container<T> currContainer: mostrador) {
-            System.out.printf("Ficha %d ", cont++);
+            System.out.printf("Ficha %d", cont++);
             System.out.println(currContainer);
         }
     }

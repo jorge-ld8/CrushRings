@@ -16,8 +16,6 @@ public abstract class Container<T extends Token>{
 
     public abstract boolean isNotEmpty();
 
-    public abstract boolean equals(Container<T> ob);
-
     public abstract boolean equals(Container<T> ob, Color color);
 
     public abstract void clean();

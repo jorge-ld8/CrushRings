@@ -5,8 +5,9 @@ import direction.Octagonal;
 import token.Ring;
 import token.TripleContainer;
 import java.util.ArrayList;
+import token.*;
 
-public class SquareBoard extends Board<Ring, Octagonal, RoundCell<Ring, Octagonal>> {
+public class SquareBoard extends Board<Token, Octagonal, RoundCell<Token, Octagonal>> {
     public SquareBoard(){
         //cell of the board
         super();
@@ -37,5 +38,6 @@ public class SquareBoard extends Board<Ring, Octagonal, RoundCell<Ring, Octagona
         getCell(8).genAdjacency(getCell(5), Octagonal.UP);
 
         getCell(9).genAdjacency(getCell(5), Octagonal.UP_LEFT);
+        System.out.println();
     }
 }

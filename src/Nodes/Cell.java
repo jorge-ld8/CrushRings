@@ -1,7 +1,6 @@
 package Nodes;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Objects;
 import direction.Direction;
 import token.*;
 
@@ -29,11 +28,9 @@ public abstract class Cell<T extends Token, D extends Direction>{
         return n.getNeighbours();
     }
 
-    public void addNeighbour(Cell<T, D> otherNode, D dir){getN().addNeighbour(otherNode, dir);}
-
     public void genAdjacency(Cell<T, D> otherNode, D direction) {
-        addNeighbour(otherNode, direction);
-        otherNode.addNeighbour(this, direction.opposite());
+        getN().addNeighbour(otherNode, direction);
+        otherNode.getN().addNeighbour(this, direction.opposite());
     }
 
     //Overloading of method take so a variable of type container can be passed as an argument
@@ -64,10 +61,6 @@ public abstract class Cell<T extends Token, D extends Direction>{
     }
 
     public ArrayList<Color> getColors(){ return getValue().getColors();}
-
-    public boolean equals(Cell<T, D> otherTile){
-        return getValue().equals(otherTile.getValue());
-    }
 
     public boolean equals(Cell<T, D> otherCell, Color currColor){
         return getValue().equals(otherCell.getValue(), currColor);

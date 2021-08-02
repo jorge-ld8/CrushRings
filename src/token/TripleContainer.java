@@ -1,48 +1,30 @@
 package token;
 import java.util.ArrayList;
-import java.util.Objects;
 
-//TODO:Discuss implementation of the container as hashmap
 //TODO: Find out how to deal with mutability of returning an ArrayList
-public final class TripleContainer<T extends Token> extends Container<T>{
-    @SafeVarargs
-    public TripleContainer(T...ts){
+public final class TripleContainer extends Container<Token>{
+    public TripleContainer(Token...ts){
         if(ts.length>3)
             throw new IllegalArgumentException("ERROR. Tokens don't fit in the container");
         tokens = new ArrayList<>();
-        tokens.add((T) new NullToken());
-        tokens.add((T) new NullToken());
-        tokens.add((T) new NullToken());
-        for(T token: ts)
+        tokens.add(new SmallRing());
+        tokens.add(new MidRing());
+        tokens.add(new BigRing());
+        for(Token token: ts)
             this.take(token);
     }
 
     public TripleContainer(){
         tokens = new ArrayList<>();
-        tokens.add((T) new NullToken());
-        tokens.add((T) new NullToken());
-        tokens.add((T) new NullToken());
+        tokens.add(new SmallRing());
+        tokens.add(new MidRing());
+        tokens.add(new BigRing());
     }
 
-    public Token getBigToken(){return tokens.get(2);}
-    public Token getMidToken(){return tokens.get(1); }
-    public Token getSmallToken() { return tokens.get(0);}
-
-    private void setSmallToken(T smallToken) {
-        tokens.set(0, smallToken);
-    }
-
-    private void setMidToken(T midToken) {
-        tokens.set(1, midToken);
-    }
-
-    private void setBigToken(T bigToken) {
-        tokens.set(2, bigToken);
-    }
-
-    public boolean equals(Container<T> ob) {
-        for(T token: getTokens()){
-            for(T otherToken: ob.getTokens()){
+    //metodo equals que no tiene mucho sentido
+    public boolean equals(Container<Token> ob) {
+        for(Token token: getTokens()){
+            for(Token otherToken: ob.getTokens()){
                 if(token.equals(otherToken))
                     return true;
             }
@@ -50,7 +32,7 @@ public final class TripleContainer<T extends Token> extends Container<T>{
         return false;
     }
 
-    public boolean equals(Container<T> ob, Color color){
+    public boolean equals(Container<Token> ob, Color color){
         for(Color currColor: getColors()){
             if(currColor == color) {
                 for (Color otherColor : ob.getColors()) {
@@ -63,57 +45,52 @@ public final class TripleContainer<T extends Token> extends Container<T>{
     }
 
     public boolean sameVal() {
-        return getSmallToken().equals(getMidToken()) &&
-                getSmallToken().equals(getBigToken()) &&
-                getMidToken().equals(getBigToken());
+        return tokens.get(0)==tokens.get(1) &&
+                tokens.get(0)==tokens.get(2)&&
+                tokens.get(1)==tokens.get(2);
     }
 
-    public boolean isPlayable(Container<T> container){
-        for(T token: container.getTokens()){
-            switch (token.getSize()){
-                case SMALL ->{
-                    if(getSmallToken().isNotNil()) return false;}
-                case MEDIUM ->{
-                    if(getMidToken().isNotNil()) return false;}
-                case BIG ->{
-                    if(getBigToken().isNotNil()) return false;}
+    public boolean isPlayable(Container<Token> container){
+        for(Token token: container.getTokens()){
+            for(Token currToken: getTokens()) {
+                if(token.getClass() == currToken.getClass()){
+                    if(currToken.isNotNil())
+                        return false;
+                }
             }
         }
         return true;
     }
+
     @Override
-    public boolean take(Container<T> container){
+    public boolean take(Container<Token> container){
         if(!isPlayable(container)) return false;
-        for(T token: container.getTokens())
+        for(Token token: container.getTokens())
             take(token);
         return true;
     }
 
-    private void take(T token) {
-        switch (token.getSize()) {
-            case SMALL -> setSmallToken(token);
-            case MEDIUM -> setMidToken(token);
-            case BIG -> setBigToken(token);
+    private void take(Token token) {
+        for(Token currToken: tokens){
+            if(token.getClass() == currToken.getClass())
+                currToken.set(token);
         }
     }
 
     public void clean(){
-        setSmallToken((T) new NullToken());
-        setMidToken((T) new NullToken());
-        setBigToken((T) new NullToken());
+        for(Token token: getTokens())
+            token.clean();
     }
 
-    public void clean(Color color){
-        if(getSmallToken().getColor() == color)
-            setSmallToken((T) new NullToken());
-        if(getMidToken().getColor() == color)
-            setMidToken((T) new NullToken());
-        if(getBigToken().getColor() == color)
-            setBigToken((T) new NullToken());
+    public void clean(Color color) {
+        for (Token token : getTokens()){
+            if (token.getColor() == color)
+                token.clean();
+        }
     }
 
     public boolean isNotEmpty(){
-        for(T token: tokens){
+        for(Token token: tokens){
             if(token.isNotNil())
                 return true;
         }
@@ -122,6 +99,6 @@ public final class TripleContainer<T extends Token> extends Container<T>{
 
     @Override
     public String toString(){
-        return String.format("Triple container: -%-20s-%-20s-%-20s %n", getSmallToken(), getMidToken(), getBigToken());
+        return String.format(" Triple container: -%-20s-%-20s-%-20s %n", tokens.get(0), tokens.get(1), tokens.get(2));
     }
 }

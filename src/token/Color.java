@@ -8,4 +8,5 @@ public enum Color {
     PURPLE,
     PINK,
     WHITE,
+    EMPTY
 }

@@ -13,7 +13,7 @@ import java.util.Scanner;
 //abstraer para que en vez de un solo token sea un Container (extensible para 1 o mas tokens)
 
 //TODO: cambiar diseño de clases Marcador y Lineal Rule tal que Regla solo se encargue de decir si hay match y marcador solo de contar puntos
-public class CrushRingsGame extends MatchGame<Ring, Octagonal, RoundCell<Ring, Octagonal>, SquareBoard> {
+public class CrushRingsGame extends MatchGame<Token, Octagonal, RoundCell<Token, Octagonal>, SquareBoard> {
     @Override
     public void initGame() {
         //initialize game entities
@@ -21,7 +21,7 @@ public class CrushRingsGame extends MatchGame<Ring, Octagonal, RoundCell<Ring, O
         setGamestate(GameState.GOING);
         setRule(new CrushRingsRule());
         setMarcador(new Marcador());
-        setMostrador(new MostradorCrushRings(3));
+        setMostrador(new MostradorCrushRings());
 
         //game main loop
         mainGame();
@@ -30,19 +30,21 @@ public class CrushRingsGame extends MatchGame<Ring, Octagonal, RoundCell<Ring, O
     private void mainGame(){
         //game main loop
         getMostrador().showMostrador();
-        Container<Ring> currToken;
-        RoundCell<Ring, Octagonal> currCell;
+        Container<Token> currToken;
+        RoundCell<Token, Octagonal> currCell;
         do{
             do{
                 currToken = readToken();
+                System.out.println(currToken);
                 currCell = readCell();
+                System.out.println(currCell);
             }while(!getBoard().placeTokenAtCell(currToken, currCell));
 
             getMostrador().update(currToken); //remove currToken from mostrador
 
             boolean hayMatch = getRule().match(currCell, getMarcador());
-            if(hayMatch)
-                System.out.println("Hay match!");
+            if(hayMatch) System.out.println("Hay match!");
+
             getBoard().showBoard();
             getMarcador().showCont();
             if(getMostrador().isEmpty())
@@ -52,8 +54,8 @@ public class CrushRingsGame extends MatchGame<Ring, Octagonal, RoundCell<Ring, O
         }while(getGamestate() == GameState.GOING);
     }
 
-    private Container<Ring> readToken(){
-        Container<Ring> readContainer;
+    private Container<Token> readToken(){
+        Container<Token> readContainer;
         int indContainer = 0;
         Scanner myInput = new Scanner(System.in);
         do {
@@ -69,8 +71,8 @@ public class CrushRingsGame extends MatchGame<Ring, Octagonal, RoundCell<Ring, O
         return readContainer;
     }
 
-    private RoundCell<Ring, Octagonal> readCell(){
-        RoundCell<Ring, Octagonal> readCell;
+    private RoundCell<Token, Octagonal> readCell(){
+        RoundCell<Token, Octagonal> readCell;
         int indCell = 0;
         Scanner myInput = new Scanner(System.in);
         do{
@@ -87,13 +89,13 @@ public class CrushRingsGame extends MatchGame<Ring, Octagonal, RoundCell<Ring, O
 
     @Override
     public void updateGame(){
-        ArrayList<Container<Ring>> MostradorList = getMostrador().mostrador;
-
-        for(Container<Ring> currContainer: MostradorList){
-            if(currContainer.isNotEmpty() && getBoard().isAPlay(currContainer)) return;
+        ArrayList<Container<Token>> MostradorList = getMostrador().mostrador;
+        for(Container<Token> currContainer: MostradorList){
+            if(currContainer.isNotEmpty() && getBoard().isAPlay(currContainer))
+                return;
         }
         setGamestate(GameState.LOST);
     }
 }
 
-class CrushRingsRule extends LinealRule<Ring, Octagonal>{}
+class CrushRingsRule extends LinealRule<Token, Octagonal>{}
