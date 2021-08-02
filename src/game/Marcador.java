@@ -36,3 +36,7 @@ public class Marcador<T extends Token, D extends Direction>{
     }
 }
 
+/*public void update(Cell<T, D> cell, Color color){
+}
+ */
+
