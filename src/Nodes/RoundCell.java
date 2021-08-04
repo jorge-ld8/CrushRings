@@ -15,6 +15,6 @@ public class RoundCell<T extends Token, D extends Direction> extends Cell<T, D>{
 
     @Override
     public String toString(){
-        return String.format("Round Tile: %s", getValue());
+        return String.format("Round Cell: %s", getValue());
     }
 }

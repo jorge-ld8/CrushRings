@@ -20,7 +20,7 @@ public abstract class Mostrador<T extends Token>{
     public abstract int size();
 
     public void showMostrador(){
-        System.out.println("Fichas en Mostrador: ");
+        System.out.println("Mostrador: ");
         int cont=1;
         for(Container<T> currContainer: mostrador) {
             System.out.printf("Ficha %d", cont++);

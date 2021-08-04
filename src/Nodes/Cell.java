@@ -3,6 +3,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import direction.Direction;
 import token.*;
+import java.util.Set;
 
 //HOLA
 /*clase abstracta Tile que representa una casilla abstracta, de la cual si se desea impmlementar
@@ -20,17 +21,11 @@ public abstract class Cell<T extends Token, D extends Direction>{
 
     public Container<T> getValue(){return value;}
 
-    public Neighbourhood<T, D> getN(){
-        return n;
-    }
-
-    public HashMap<D, Cell<T, D>> getNeighbours(){
-        return n.getNeighbours();
-    }
+    //public HashMap<D, Cell<T, D>> getNeighbours(){return n.getNeighbours();}
 
     public void genAdjacency(Cell<T, D> otherNode, D direction) {
-        getN().addNeighbour(otherNode, direction);
-        otherNode.getN().addNeighbour(this, direction.opposite());
+        n.addNeighbour(otherNode, direction);
+        otherNode.n.addNeighbour(this, direction.opposite());
     }
 
     //Overloading of method take so a variable of type container can be passed as an argument
@@ -45,20 +40,25 @@ public abstract class Cell<T extends Token, D extends Direction>{
     public int getColor(Color color){
         int cont=0;
         for(Color currColor: getColors()) {
-             if(currColor == color)cont++;
+             if(currColor == color)
+                 cont++;
         }
         return cont;
     }
+
+    public boolean sameVal(){return getValue().sameVal();}
 
     public void clean(){
         getValue().clean();
     }
 
-    public boolean sameVal(){return getValue().sameVal();}
-
     public void clean(Color color){
         getValue().clean(color);
     }
+
+    public Cell<T, D> getNeighbour(D dir){return n.get(dir);}
+
+    public Set<D> getNeighbours(){return n.getDirections();}
 
     public ArrayList<Color> getColors(){ return getValue().getColors();}
 

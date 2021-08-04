@@ -21,17 +21,6 @@ public final class TripleContainer extends Container<Token>{
         tokens.add(new BigRing());
     }
 
-    //metodo equals que no tiene mucho sentido
-    public boolean equals(Container<Token> ob) {
-        for(Token token: getTokens()){
-            for(Token otherToken: ob.getTokens()){
-                if(token.equals(otherToken))
-                    return true;
-            }
-        }
-        return false;
-    }
-
     public boolean equals(Container<Token> ob, Color color){
         for(Color currColor: getColors()){
             if(currColor == color) {
@@ -71,10 +60,8 @@ public final class TripleContainer extends Container<Token>{
     }
 
     private void take(Token token) {
-        for(Token currToken: tokens){
-            if(token.getClass() == currToken.getClass())
-                currToken.set(token);
-        }
+        for(Token currToken: tokens)
+            currToken.set(token);
     }
 
     public void clean(){
@@ -99,6 +86,6 @@ public final class TripleContainer extends Container<Token>{
 
     @Override
     public String toString(){
-        return String.format(" Triple container: -%-20s-%-20s-%-20s %n", tokens.get(0), tokens.get(1), tokens.get(2));
+        return String.format(" -%-20s-%-20s-%-20s %n", tokens.get(0), tokens.get(1), tokens.get(2));
     }
 }

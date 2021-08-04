@@ -35,9 +35,7 @@ public class CrushRingsGame extends MatchGame<Token, Octagonal, RoundCell<Token,
         do{
             do{
                 currToken = readToken();
-                System.out.println(currToken);
                 currCell = readCell();
-                System.out.println(currCell);
             }while(!getBoard().placeTokenAtCell(currToken, currCell));
 
             getMostrador().update(currToken); //remove currToken from mostrador

@@ -2,28 +2,19 @@ package token;
 
 public abstract class Token {
     protected Color color;
-    //protected Size size;
 
     //getters
-    public Color getColor(){
-        return color;
-    }
-
-    /*public Size getSize(){
-        return size;
-    }*/
+    public Color getColor(){ return color;}
 
     //setters
     public void setColor(Color color){ this.color = color;}
 
-    /*public void setSize(Size size){this.size = size;}*/
-
     public abstract void set(Token token);
-    //draw the token
-    public abstract void draw();
 
     public abstract boolean isNotNil();
 
     public abstract void clean();
 
+    //draw the token
+    public abstract void draw();
 }

@@ -42,11 +42,11 @@ public abstract class MatchGame<T extends Token, D extends Direction, C extends 
         this.gamestate = gamestate;
     }
 
-    public void setMarcador(Marcador marcador) {
+    public void setMarcador(Marcador<T, D> marcador) {
         this.marcador = marcador;
     }
 
-    public void setMostrador(Mostrador mostrador) {
+    public void setMostrador(Mostrador<T> mostrador) {
         this.mostrador = mostrador;
     }
 

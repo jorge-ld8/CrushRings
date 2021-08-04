@@ -9,10 +9,9 @@ import game.*;
 public class LinealRule<T extends Token, D extends Direction> implements Rule<T, D>{
     //helper method to match(Cell<T, D> cell)
     private boolean matchlineal(Cell<T, D> cell, D direction, Color color) {
-        HashMap<D, Cell<T, D>> map = cell.getNeighbours();
-        for(D d: map.keySet()){
+        for(D d: cell.getNeighbours()){
             if(d == direction) {
-                Cell<T, D> currTile = map.get(d);
+                Cell<T, D> currTile = cell.getNeighbour(d);
                 if (cell.equals(currTile, color)) return matchlineal(currTile, d, color);
                 else return false;
             }
@@ -34,8 +33,7 @@ public class LinealRule<T extends Token, D extends Direction> implements Rule<T,
         ArrayList<Color> colorsList = cell.getColors();
         for(Color color: colorsList) {
             retbool=false;
-            HashMap<D, Cell<T, D>> map = cell.getNeighbours(); //iteracion por los vecinos
-            for (D d : map.keySet()) {
+            for (D d : cell.getNeighbours()) {
                 boolean isLinealMatch = matchlineal(cell, d, color) && matchlineal(cell, d.opposite(), color);
                 if (isLinealMatch) {
                     retbool = true;

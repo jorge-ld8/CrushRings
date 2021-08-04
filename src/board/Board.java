@@ -25,9 +25,8 @@ public abstract class Board<T extends Token, D extends Direction, C extends Cell
             currCell = queue.remove(0);
             if(currCell.isPlayable(container))
                 return true;
-            HashMap<D, Cell<T, D>> neighbours = currCell.getNeighbours();
-            for(D dir: neighbours.keySet()){
-                Cell<T, D> nextCell = neighbours.get(dir);
+            for(D dir: currCell.getNeighbours()){
+                Cell<T, D> nextCell = currCell.getNeighbour(dir);
                 if(!explored.contains(nextCell)){
                     queue.add(nextCell);
                     explored.add(nextCell);

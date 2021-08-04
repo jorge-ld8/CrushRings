@@ -17,17 +17,12 @@ public class Marcador<T extends Token, D extends Direction>{
         System.out.println("Contador de puntos: " + getCont());
     }
 
-    public void increment(){
-        cont+=pointVal;
-    }
-
     public void increment(int incRate){ cont+=pointVal*incRate;}
 
     public void update(Cell<T, D> cell, Color color, D direction){
-        HashMap<D, Cell<T, D>> neighboursTile = cell.getNeighbours();
-        for(D d : neighboursTile.keySet()){
+        for(D d : cell.getNeighbours()){
             if(d == direction){
-                Cell<T, D> currTile = neighboursTile.get(d);
+                Cell<T, D> currTile = cell.getNeighbour(d);
                 increment(currTile.getColor(color));
                 update(currTile, color, d);
                 currTile.clean(color);

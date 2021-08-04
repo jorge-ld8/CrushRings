@@ -1,13 +1,8 @@
 package token;
 
 public abstract class Ring extends Token{
-    //think about restrictions about input vals
     //constructor
-    public Ring(Color color){
-        //public Ring(Color color, Size size){
-        //this.size = size
-        this.color = color;
-    }
+    public Ring(Color color){this.color = color;}
 
     public Ring(){
         this.color = Color.EMPTY;

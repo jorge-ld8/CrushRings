@@ -21,6 +21,8 @@ public class Neighbourhood<T extends Token, D extends Direction>{
 
     public Cell<T, D> get(D dir){ return neighbours.get(dir);}
 
+    public Set<D> getDirections(){return neighbours.keySet();}
+
     public void addNeighbour(Cell<T, D> otherNode, D dir){
         neighbours.put(dir, otherNode);
     }

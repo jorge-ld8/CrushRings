@@ -1,12 +1,9 @@
 package game;
-
-import direction.Octagonal;
 import token.*;
-
-import java.util.ArrayList;
 import java.util.Random;
 
 public class MostradorCrushRings extends Mostrador<Token>{
+    public static int tiposFicha = 3;
     public MostradorCrushRings(){
         super();
         mostrador.add(new TripleContainer(new SmallRing(Color.GREEN)));
@@ -18,8 +15,9 @@ public class MostradorCrushRings extends Mostrador<Token>{
     @Override
     public int size(){
         int cont=0;
-        for(Container token: mostrador){
-            if(token.isNotEmpty()) ++cont;
+        for(Container<Token> token: mostrador){
+            if(token.isNotEmpty())
+                ++cont;
         }
         return cont;
     }
@@ -33,13 +31,12 @@ public class MostradorCrushRings extends Mostrador<Token>{
             Token[] containers = new Token[qContainer];
             for(int j=0; j<qContainer; j++) {
                 int colorInt = random.nextInt(Color.values().length-1);
-                int sizeInt = random.nextInt(Size.values().length);
+                int sizeInt = random.nextInt(tiposFicha);
                 Color randColor = Color.values()[colorInt];
-                Size randSize = Size.values()[sizeInt];
                 Token finRing;
-                if(randSize == Size.SMALL)
+                if(sizeInt == 1 )
                     finRing = new SmallRing(randColor);
-                else if(randSize == Size.MEDIUM)
+                else if(sizeInt == 2)
                     finRing = new MidRing(randColor);
                 else
                     finRing = new BigRing(randColor);
