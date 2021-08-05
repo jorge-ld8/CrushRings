@@ -17,6 +17,6 @@ public class SmallRing extends Ring{
 
     @Override
     public String toString(){
-        return String.format("SMALL %s RING", getColor());
+        return String.format("%sSMALL %s %s", getColor().getColorRepresentation(),super.toString(), ColorConstants.TEXT_RESET);
     }
 }

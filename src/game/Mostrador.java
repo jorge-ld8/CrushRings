@@ -19,18 +19,22 @@ public abstract class Mostrador<T extends Token>{
     public abstract int availableTokens();
 
     public void showMostrador(){
-        System.out.println("Mostrador: ");
+        System.out.println("\t\t\t\t\t\t  MOSTRADOR ");
         int cont=1;
         for(Container<T> currContainer: mostrador) {
             System.out.printf("Ficha %d", cont++);
-            if(currContainer.isNotEmpty())
+            if(currContainer.isNotEmpty()) {
                 System.out.println(currContainer);
+                System.out.println();
+            }
             else
-                System.out.println(" ------------------------- EMPTY -------------------------\n");
+                System.out.println(" ----------------------- EMPTY ------------------------\n");
         }
     }
 
     public Container<T> getContainer(int index){
+        if(index<1 || index>size())
+            throw new IllegalArgumentException(String.format("INDEX %d no esta dentro de los limites de Mostrador", index));
         Container<T> retContainer = mostrador.get(index-1);
         if(!retContainer.isNotEmpty())
             throw new IllegalArgumentException("FICHA VACÍA");

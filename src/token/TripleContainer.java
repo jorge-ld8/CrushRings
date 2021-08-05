@@ -78,6 +78,6 @@ public final class TripleContainer extends Container<Token>{
 
     @Override
     public String toString(){
-        return String.format(" -%-20s-%-20s-%-20s %n", tokens.get(0), tokens.get(1), tokens.get(2));
+        return String.format(" -%-25s -%-25s -%-25s  ", tokens.get(0), tokens.get(1), tokens.get(2));
     }
 }

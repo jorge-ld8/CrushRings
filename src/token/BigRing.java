@@ -17,6 +17,6 @@ public class BigRing extends Ring{
 
     @Override
     public String toString(){
-        return String.format("BIG %s RING", getColor());
+        return String.format("%s BIG %s%s", getColor().getColorRepresentation(), super.toString(), ColorConstants.TEXT_RESET);
     }
 }

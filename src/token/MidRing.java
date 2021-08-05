@@ -16,7 +16,5 @@ public class MidRing extends Ring{
     }
 
     @Override
-    public String toString(){
-        return String.format("MEDIUM %s RING", getColor());
-    }
+    public String toString(){ return String.format("%sMID %s%s", getColor().getColorRepresentation(), super.toString(), ColorConstants.TEXT_RESET);}
 }

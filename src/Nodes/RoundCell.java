@@ -8,6 +8,7 @@ public class RoundCell<T extends Token, D extends Direction> extends Cell<T, D>{
 
     public RoundCell(Container<T> valor){ super(valor);}
 
+
     @Override
     public void draw(){
         System.out.printf("Round Cell: %s", getValue());
@@ -15,6 +16,6 @@ public class RoundCell<T extends Token, D extends Direction> extends Cell<T, D>{
 
     @Override
     public String toString(){
-        return String.format("Round Cell: %s", getValue());
+        return String.format("%65s", getValue());
     }
 }

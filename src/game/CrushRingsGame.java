@@ -32,10 +32,16 @@ public class CrushRingsGame extends MatchGame<Token, Octagonal, RoundCell<Token,
         getMostrador().showMostrador();
         Container<Token> currToken;
         RoundCell<Token, Octagonal> currCell;
+        outer:
         do{
             do{
                 currToken = readToken();
+                if(!currToken.isNotEmpty()) { //way to exit the program before finishing
+                    setGamestate(GameState.LOST);
+                    continue outer;
+                }
                 currCell = readCell();
+                System.out.println();
             }while(!getBoard().placeTokenAtCell(currToken, currCell));
 
             getMostrador().update(currToken); //remove currToken from mostrador
@@ -60,6 +66,7 @@ public class CrushRingsGame extends MatchGame<Token, Octagonal, RoundCell<Token,
             try {
                 System.out.print("Introduzca indice de ficha que quiere elegir: ");
                 indContainer = myInput.nextInt();
+                if(indContainer == -1)break;
                 readContainer = getMostrador().getContainer(indContainer);
             }catch(InputMismatchException e){
                 System.out.println("ENTER A NUMBER");
@@ -68,24 +75,27 @@ public class CrushRingsGame extends MatchGame<Token, Octagonal, RoundCell<Token,
                 System.out.println("TOME UNA FICHA VALIDA");
             }
             myInput.nextLine();
-        }while(indContainer<1 || indContainer >3 || !readContainer.isNotEmpty());
+        }while(indContainer<1 || indContainer >getMostrador().size() || !readContainer.isNotEmpty());
         return readContainer;
     }
 
     private RoundCell<Token, Octagonal> readCell(){
-        RoundCell<Token, Octagonal> readCell;
+        RoundCell<Token, Octagonal> readCell = null;
         int indCell = 0;
         Scanner myInput = new Scanner(System.in);
         do{
             try {
                 System.out.print("Introduzca indice de la casilla que quiere elegir: ");
                 indCell = myInput.nextInt();
+                readCell = getBoard().getCell(indCell);
             }catch(InputMismatchException e){
-                System.out.println("ENTER A NUMBER");
+                System.out.println("INTRODUZCA UN NUMERO");
+            }
+            catch(IllegalArgumentException e){
+                System.out.println("INTRODUZCA UNA CASILLA VALIDA");
             }
             myInput.nextLine();
         }while(indCell <1 || indCell>9);
-        readCell = getBoard().getCell(indCell);
         return readCell;
     }
 
@@ -96,6 +106,7 @@ public class CrushRingsGame extends MatchGame<Token, Octagonal, RoundCell<Token,
             if(currContainer.isNotEmpty() && getBoard().isAPlay(currContainer))
                 return;
         }
+        System.out.printf("GAME OVER!\n\nPUNTAJE: %d", getMarcador().getCont());
         setGamestate(GameState.LOST);
     }
 }
