@@ -14,7 +14,4 @@ public abstract class Token {
     public abstract boolean isNotNil();
 
     public abstract void clean();
-
-    //draw the token
-    public abstract void draw();
 }

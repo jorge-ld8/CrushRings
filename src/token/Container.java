@@ -15,10 +15,6 @@ public abstract class Container<T extends Token> implements Cleanable{
 
     public abstract boolean equals(Container<T> ob, Color color);
 
-    public abstract void clean();
-
-    public abstract void clean(Color color); //Overloaded
-
     public boolean isNotEmpty(){return getTokens().size() > 0;}
 
     public ArrayList<T> getTokens() {

@@ -20,7 +20,7 @@ public class CrushRingsGame extends MatchGame<Token, Octagonal, RoundCell<Token,
         setBoard(new SquareBoard());
         setGamestate(GameState.GOING);
         setRule(new CrushRingsRule());
-        setMarcador(new Marcador<>());
+        setMarcador(new MarcadorCrushRings());
         setMostrador(new MostradorCrushRings());
 
         //game main loop

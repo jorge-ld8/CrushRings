@@ -8,8 +8,6 @@ public abstract class Ring extends Token{
         this.color = Color.EMPTY;
     }
 
-    public void draw(){}
-
     @Override
     public void clean(){
         setColor(Color.EMPTY);
@@ -32,7 +30,6 @@ public abstract class Ring extends Token{
 
     @Override
     public String toString(){
-        //return String.format("%-6s RING", getColor());
         return "RING";
     }
 }

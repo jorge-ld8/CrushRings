@@ -3,12 +3,12 @@ import Nodes.*;
 import token.*;
 import direction.*;
 
-public class Marcador<T extends Token, D extends Direction>{
-    private  int cont; //contador de puntos
+public abstract class Marcador<T extends Token, D extends Direction>{
+    private  int cont;
 
     public static final int pointVal = 1; //valor por ficha en match
 
-    private PointCombo combo = new PointCombo();
+    private final PointCombo combo = new PointCombo();
 
     public int getCont(){
         return cont;
@@ -23,16 +23,7 @@ public class Marcador<T extends Token, D extends Direction>{
 
     public void increment(int incRate){ cont+=pointVal*incRate*combo.getMultiplier();}
 
-    public void update(Cell<T, D> cell, Color color, D direction){
-        for(D d : cell.getNeighbours()){
-            if(d == direction){
-                Cell<T, D> currTile = cell.getNeighbour(d);
-                increment(currTile.getColor(color));
-                update(currTile, color, d);
-                currTile.clean(color);
-            }
-        }
-    }
+    public abstract void update(Cell<T, D> cell, Color color, D direction);
 
     public void  resetCombo(){combo.reset();}
 
