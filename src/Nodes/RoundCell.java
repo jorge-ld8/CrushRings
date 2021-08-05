@@ -16,6 +16,6 @@ public class RoundCell<T extends Token, D extends Direction> extends Cell<T, D>{
 
     @Override
     public String toString(){
-        return String.format("%65s", getValue());
+        return String.format("|%50s|\t\t", getValue());
     }
 }

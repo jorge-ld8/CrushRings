@@ -28,8 +28,11 @@ public class CrushRingsGame extends MatchGame<Token, Octagonal, RoundCell<Token,
     }
 
     private void mainGame(){
-        //game main loop
+        //mostrar marcador y tablero
+        getBoard().showBoard();
         getMostrador().showMostrador();
+
+        //game main loop
         Container<Token> currToken;
         RoundCell<Token, Octagonal> currCell;
         outer:

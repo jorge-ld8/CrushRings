@@ -1,4 +1,5 @@
 package game;
+import board.Graficador;
 import token.*;
 import java.util.ArrayList;
 
@@ -19,17 +20,14 @@ public abstract class Mostrador<T extends Token>{
     public abstract int availableTokens();
 
     public void showMostrador(){
-        System.out.println("\t\t\t\t\t\t  MOSTRADOR ");
+        System.out.print("\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t  MOSTRADOR");
         int cont=1;
+        Graficador.printLine(149);
         for(Container<T> currContainer: mostrador) {
-            System.out.printf("Ficha %d", cont++);
-            if(currContainer.isNotEmpty()) {
-                System.out.println(currContainer);
-                System.out.println();
-            }
-            else
-                System.out.println(" ----------------------- EMPTY ------------------------\n");
+            System.out.printf("F%d", cont++);
+            System.out.printf(" |%s|\t\t",currContainer);
         }
+        Graficador.printLine(149);
     }
 
     public Container<T> getContainer(int index){

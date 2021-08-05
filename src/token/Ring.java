@@ -31,5 +31,8 @@ public abstract class Ring extends Token{
 
 
     @Override
-    public String toString(){ return String.format("%s RING", getColor());}
+    public String toString(){
+        //return String.format("%-6s RING", getColor());
+        return "RING";
+    }
 }

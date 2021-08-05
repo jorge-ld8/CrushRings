@@ -1,6 +1,5 @@
 package board;
 import direction.Direction;
-import jdk.swing.interop.SwingInterOpUtils;
 import token.*;
 import Nodes.*;
 import java.util.ArrayList;
@@ -41,13 +40,14 @@ public abstract class Board<T extends Token, D extends Direction, C extends Cell
 
     public void showBoard() {
         int i = 1;
-        System.out.printf("\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tBOARD%n%n");
+        System.out.print("\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tBOARD");
+        Graficador.printLine(149);
         for (C cell : board) {
-            System.out.printf("C%d: ", i++);
+            System.out.printf("C%d ", i++);
             System.out.print(cell);
-            if((i-1) % 3 == 0){
-                System.out.println("\n");
-            }
+            if((i-1) % 3 == 0)
+                Graficador.printLine(149);
         }
+        System.out.println();
     }
 }
