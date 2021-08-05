@@ -26,7 +26,7 @@ public enum Color {
             case PURPLE -> ColorConstants.TEXT_PURPLE;
             case CYAN -> ColorConstants.TEXT_CYAN;
             case WHITE -> ColorConstants.TEXT_WHITE;
-            case EMPTY -> ColorConstants.WHITE_BOLD;
+            case EMPTY -> ColorConstants.TEXT_BLACK;
         };
     }
 }
