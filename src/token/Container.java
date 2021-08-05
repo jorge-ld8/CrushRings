@@ -1,8 +1,5 @@
 package token;
-
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
 
 //Clase abstracta que representa un contenedor de fichas de un tamaño no definido
 public abstract class Container<T extends Token>{
@@ -14,13 +11,13 @@ public abstract class Container<T extends Token>{
 
     public abstract boolean sameVal();
 
-    public abstract boolean isNotEmpty();
-
     public abstract boolean equals(Container<T> ob, Color color);
 
     public abstract void clean();
 
     public abstract void clean(Color color); //Overloaded
+
+    public boolean isNotEmpty(){return getTokens().size() > 0;}
 
     public ArrayList<T> getTokens() {
         ArrayList<T> tokensList = new ArrayList<>();

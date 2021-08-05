@@ -2,9 +2,7 @@ package board;
 import direction.Direction;
 import token.*;
 import Nodes.*;
-
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public abstract class Board<T extends Token, D extends Direction, C extends Cell<T, D>>{
     protected final ArrayList<C> board;
@@ -15,7 +13,7 @@ public abstract class Board<T extends Token, D extends Direction, C extends Cell
 
     public boolean placeTokenAtCell(Container<T> container, C cell){return cell.take(container);}
 
-    public boolean isAPlay(Container<T> container){ //Breadth first search busqueda en el grafo
+    public boolean isAPlay(Container<T> container){ //BFS busqueda en profundidad, para recorrer el grafo
         Cell<T, D> currCell = getCell(1);
         ArrayList<Cell<T,D>> explored = new ArrayList<>();
         explored.add(currCell);

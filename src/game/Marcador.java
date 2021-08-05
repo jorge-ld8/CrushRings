@@ -2,7 +2,6 @@ package game;
 import Nodes.*;
 import token.*;
 import direction.*;
-import java.util.HashMap;
 
 public class Marcador<T extends Token, D extends Direction>{
     private  int cont; //contador de puntos
@@ -28,6 +27,10 @@ public class Marcador<T extends Token, D extends Direction>{
                 currTile.clean(color);
             }
         }
+    }
+
+    public void pruebaUpdate(Cell<T, D> cell){
+        //prueba de una update de puntos
     }
 }
 

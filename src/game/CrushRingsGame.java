@@ -20,7 +20,7 @@ public class CrushRingsGame extends MatchGame<Token, Octagonal, RoundCell<Token,
         setBoard(new SquareBoard());
         setGamestate(GameState.GOING);
         setRule(new CrushRingsRule());
-        setMarcador(new Marcador());
+        setMarcador(new Marcador<>());
         setMostrador(new MostradorCrushRings());
 
         //game main loop
@@ -53,19 +53,22 @@ public class CrushRingsGame extends MatchGame<Token, Octagonal, RoundCell<Token,
     }
 
     private Container<Token> readToken(){
-        Container<Token> readContainer;
+        Container<Token> readContainer = new TripleContainer();
         int indContainer = 0;
         Scanner myInput = new Scanner(System.in);
         do {
             try {
                 System.out.print("Introduzca indice de ficha que quiere elegir: ");
                 indContainer = myInput.nextInt();
+                readContainer = getMostrador().getContainer(indContainer);
             }catch(InputMismatchException e){
                 System.out.println("ENTER A NUMBER");
             }
+            catch(IllegalArgumentException e){
+                System.out.println("TOME UNA FICHA VALIDA");
+            }
             myInput.nextLine();
-        }while(indContainer<1 || indContainer >3);
-        readContainer = getMostrador().getContainer(indContainer);
+        }while(indContainer<1 || indContainer >3 || !readContainer.isNotEmpty());
         return readContainer;
     }
 
@@ -80,6 +83,7 @@ public class CrushRingsGame extends MatchGame<Token, Octagonal, RoundCell<Token,
             }catch(InputMismatchException e){
                 System.out.println("ENTER A NUMBER");
             }
+            myInput.nextLine();
         }while(indCell <1 || indCell>9);
         readCell = getBoard().getCell(indCell);
         return readCell;

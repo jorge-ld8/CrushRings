@@ -13,6 +13,6 @@ public class boardTest {
         myBoard.placeTokenAtCell(new TripleContainer(new SmallRing(Color.BLUE)), myBoard.getCell(7));
         myBoard.placeTokenAtCell(new TripleContainer(new BigRing(Color.PINK)), myBoard.getCell(5));
         myBoard.placeTokenAtCell(new TripleContainer(new MidRing(Color.BLUE)), myBoard.getCell(8));
-        System.out.println(myRule.match(myBoard.getCell(8), myMarcador)? "HAY MATCH" : "NO HAY MATCH");;
+        System.out.println(myRule.match(myBoard.getCell(8), myMarcador)? "HAY MATCH" : "NO HAY MATCH");
     }
 }

@@ -44,10 +44,8 @@ public final class TripleContainer extends Container<Token>{
     public boolean isPlayable(Container<Token> container){
         for(Token token: container.getTokens()){
             for(Token currToken: getTokens()) {
-                if(token.getClass() == currToken.getClass()){
-                    if(currToken.isNotNil())
-                        return false;
-                }
+                if((token.getClass() == currToken.getClass()) && currToken.isNotNil())
+                    return false;
             }
         }
         return true;
@@ -61,7 +59,7 @@ public final class TripleContainer extends Container<Token>{
         return true;
     }
 
-    private void take(Token token) {
+    private void take(Token token) { //Overloaded
         for(Token currToken: tokens)
             currToken.set(token);
     }
@@ -71,19 +69,11 @@ public final class TripleContainer extends Container<Token>{
             token.clean();
     }
 
-    public void clean(Color color) {
+    public void clean(Color color) { //Overloaded
         for (Token token : getTokens()){
             if (token.getColor() == color)
                 token.clean();
         }
-    }
-
-    public boolean isNotEmpty(){
-        for(Token token: tokens){
-            if(token.isNotNil())
-                return true;
-        }
-        return false;
     }
 
     @Override

@@ -23,11 +23,19 @@ public abstract class Mostrador<T extends Token>{
         int cont=1;
         for(Container<T> currContainer: mostrador) {
             System.out.printf("Ficha %d", cont++);
-            System.out.println(currContainer);
+            if(currContainer.isNotEmpty())
+                System.out.println(currContainer);
+            else
+                System.out.println(" ------------------------- EMPTY -------------------------\n");
         }
     }
 
-    public Container<T> getContainer(int index){return mostrador.get(index-1);}
+    public Container<T> getContainer(int index){
+        Container<T> retContainer = mostrador.get(index-1);
+        if(!retContainer.isNotEmpty())
+            throw new IllegalArgumentException("FICHA VACÍA");
+        return retContainer;
+    }
 
     public void update(Container<T> updateContainer){ updateContainer.clean();}
 }

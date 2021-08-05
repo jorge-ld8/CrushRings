@@ -2,9 +2,6 @@ package board;
 
 import Nodes.*;
 import direction.Octagonal;
-import token.Ring;
-import token.TripleContainer;
-import java.util.ArrayList;
 import token.*;
 
 public class SquareBoard extends Board<Token, Octagonal, RoundCell<Token, Octagonal>> {

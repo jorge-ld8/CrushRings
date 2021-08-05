@@ -3,7 +3,6 @@ import token.*;
 import java.util.Random;
 
 public class MostradorCrushRings extends Mostrador<Token>{
-    public static int tiposFicha = 3;
     public MostradorCrushRings(){
         super();
         for(int i=0; i<size(); i++)
@@ -28,21 +27,11 @@ public class MostradorCrushRings extends Mostrador<Token>{
     public void fill(){
         Random random = new Random();
         for(int i=0; i<size(); i++) {
-            //Random seed para la cantidad de container
-            int qContainer = random.nextInt( 2)+1;
+            int qContainer = random.nextInt( 2)+1; //Random seed para la cantidad de container
             Token[] containers = new Token[qContainer];
             for(int j=0; j<qContainer; j++) {
-                int colorInt = random.nextInt(Color.values().length-1);
-                int sizeInt = random.nextInt(tiposFicha);
-                Color randColor = Color.values()[colorInt];
-                Token finRing;
-                if(sizeInt == 1 )
-                    finRing = new SmallRing(randColor);
-                else if(sizeInt == 2)
-                    finRing = new MidRing(randColor);
-                else
-                    finRing = new BigRing(randColor);
-                containers[j] = finRing;
+                RandomTokensGenerator RandTokenGen = new GenTokensRandomCrushRings();
+                containers[j] = RandTokenGen.getRandom();
             }
             mostrador.set(i, new TripleContainer(containers));
         }

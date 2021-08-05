@@ -2,7 +2,6 @@ package rule;
 import Nodes.*;
 import direction.*;
 import token.*;
-import java.util.ArrayList;
 import game.*;
 
 public class LinealRule<T extends Token, D extends Direction> implements Rule<T, D>{
@@ -51,8 +50,15 @@ public class LinealRule<T extends Token, D extends Direction> implements Rule<T,
     public boolean pruebaMatch(Cell<T, D> cell){
         if(matchtriple(cell))
             return true;
-        else
-            return false;
+        for(T token: cell.getTokens()){
+            Color currColor = token.getColor();
+            for(D d: cell.getNeighbours()){
+                boolean isLinealMatch = matchlineal(cell, d, currColor) && matchlineal(cell, d.opposite(), currColor);
+                if(isLinealMatch)
+                    return true;
+            }
+        }
+        return false;
     }
 }
 

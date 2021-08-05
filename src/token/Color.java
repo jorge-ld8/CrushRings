@@ -1,4 +1,5 @@
 package token;
+import java.util.Random;
 
 public enum Color {
     BLUE,
@@ -8,5 +9,11 @@ public enum Color {
     PURPLE,
     PINK,
     WHITE,
-    EMPTY
+    EMPTY;
+
+    public static Color getRandom(){
+        Random random = new Random();
+        int colorInt = random.nextInt(values().length-1);
+        return values()[colorInt];
+    }
 }
