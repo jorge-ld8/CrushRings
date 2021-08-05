@@ -102,7 +102,7 @@ public class CrushRingsGame extends MatchGame<Token, Octagonal, RoundCell<Token,
                 System.out.println("INTRODUZCA UNA CASILLA VALIDA");
             }
             myInput.nextLine();
-        }while(indCell <1 || indCell>9);
+        }while(indCell < 1 || indCell > 9);
         return readCell;
     }
 

@@ -36,9 +36,9 @@ public final class TripleContainer extends Container<Token>{
     }
 
     public boolean sameVal() {
-        return tokens.get(0)==tokens.get(1) &&
-                tokens.get(0)==tokens.get(2)&&
-                tokens.get(1)==tokens.get(2);
+        return tokens.get(0).equals(tokens.get(1)) &&
+                tokens.get(0).equals(tokens.get(2))&&
+                tokens.get(1).equals(tokens.get(2));
     }
 
     public boolean isPlayable(Container<Token> container){

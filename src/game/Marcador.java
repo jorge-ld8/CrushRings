@@ -15,7 +15,10 @@ public class Marcador<T extends Token, D extends Direction>{
     }
 
     public void showCont(){
-        System.out.println("Contador de puntos: " + getCont());
+        System.out.print("Contador de puntos: " + getCont());
+        if(combo.getMultiplier() != 1)
+            System.out.printf(" %s X%d %s", ColorConstants.TEXT_WHITE, combo.getMultiplier(), ColorConstants.TEXT_RESET);
+        System.out.println();
     }
 
     public void increment(int incRate){ cont+=pointVal*incRate*combo.getMultiplier();}
