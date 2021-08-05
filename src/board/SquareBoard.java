@@ -36,4 +36,17 @@ public class SquareBoard extends Board<Token, Octagonal, RoundCell<Token, Octago
 
         getCell(9).genAdjacency(getCell(5), Octagonal.UP_LEFT);
     }
+
+    public void draw() {
+        int i = 1;
+        System.out.print("\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tTABLERO");
+        Graficador.printLine(149);
+        for (RoundCell cell : board) {
+            System.out.printf("C%d ", i++);
+            cell.draw();
+            if((i-1) % 3 == 0)
+                Graficador.printLine(149);
+        }
+        System.out.println();
+    }
 }

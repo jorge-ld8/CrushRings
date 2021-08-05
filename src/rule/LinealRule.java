@@ -39,11 +39,14 @@ public class LinealRule<T extends Token, D extends Direction> implements Rule<T,
                     actualMarcador.increment(cell.getColor(currColor));
                     actualMarcador.update(cell, currColor, d);
                     actualMarcador.update(cell, currColor, d.opposite());
+                    actualMarcador.combo();
                 }
             }
             if (retbool)
                 cell.clean(currColor); //si hubo match limpiar los colores de la casilla puesta
         }
+        if(!finalbool)
+            actualMarcador.resetCombo();
         return finalbool;
     }
 

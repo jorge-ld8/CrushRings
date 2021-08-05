@@ -1,4 +1,5 @@
 package game;
+import board.Graficador;
 import token.*;
 import java.util.Random;
 
@@ -35,5 +36,17 @@ public class MostradorCrushRings extends Mostrador<Token>{
             }
             mostrador.set(i, new TripleContainer(containers));
         }
+    }
+
+    @Override
+    public void draw(){
+        System.out.print("\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t  MOSTRADOR");
+        int cont=1;
+        Graficador.printLine(149);
+        for(Container<Token> currContainer: mostrador) {
+            System.out.printf("F%d", cont++);
+            System.out.printf(" |%s|\t\t",currContainer);
+        }
+        Graficador.printLine(149);
     }
 }

@@ -2,6 +2,7 @@ package Nodes;
 import java.util.ArrayList;
 import java.util.HashMap;
 import direction.Direction;
+import functionalInterfaces.*;
 import token.*;
 import java.util.Set;
 
@@ -10,7 +11,7 @@ import java.util.Set;
 un una nueva forma de casilla solo se debe extender de esta y sobreescribir el metodo draw
 */
 //NOTA: abstraer take so it can take any container
-public abstract class Cell<T extends Token, D extends Direction>{
+public abstract class Cell<T extends Token, D extends Direction> implements Drawable, Cleanable {
     private final Container<T> value;
     private final Neighbourhood<T, D> n;
 
@@ -61,6 +62,4 @@ public abstract class Cell<T extends Token, D extends Direction>{
     public boolean equals(Cell<T, D> otherCell, Color currColor){
         return getValue().equals(otherCell.getValue(), currColor);
     }
-
-    public abstract void draw();
 }

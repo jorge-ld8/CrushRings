@@ -1,8 +1,10 @@
 package token;
+import functionalInterfaces.Cleanable;
+
 import java.util.ArrayList;
 
 //Clase abstracta que representa un contenedor de fichas de un tamaño no definido
-public abstract class Container<T extends Token>{
+public abstract class Container<T extends Token> implements Cleanable{
     protected ArrayList<T> tokens;
 
     public abstract boolean isPlayable(Container<T> container);

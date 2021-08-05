@@ -29,8 +29,8 @@ public class CrushRingsGame extends MatchGame<Token, Octagonal, RoundCell<Token,
 
     private void mainGame(){
         //mostrar marcador y tablero
-        getBoard().showBoard();
-        getMostrador().showMostrador();
+        getBoard().draw();
+        getMostrador().draw();
 
         //game main loop
         Container<Token> currToken;
@@ -50,13 +50,17 @@ public class CrushRingsGame extends MatchGame<Token, Octagonal, RoundCell<Token,
             getMostrador().update(currToken); //remove currToken from mostrador
 
             boolean hayMatch = getRule().match(currCell, getMarcador());
-            if(hayMatch) System.out.println("Hay match!");
+           /* for(Token token: currCell.getTokens()){
+                if(getRule().match(currCell))
 
-            getBoard().showBoard();
+            }*/
+            if(hayMatch) System.out.println("HAY MATCH!");
+
+            getBoard().draw();
             getMarcador().showCont();
             if(getMostrador().isEmpty())
                 getMostrador().fill();
-            getMostrador().showMostrador();
+            getMostrador().draw();
             updateGame();
         }while(getGamestate() == GameState.GOING);
     }
