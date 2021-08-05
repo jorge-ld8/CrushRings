@@ -39,7 +39,7 @@ public abstract class Board<T extends Token, D extends Direction, C extends Cell
     public void showBoard() {
         int i = 1;
         for (C cell : board) {
-            System.out.printf("Casilla %d\t", i++);
+            System.out.printf("Casilla %d ", i++);
             System.out.println(cell);
         }
     }

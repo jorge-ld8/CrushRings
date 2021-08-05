@@ -2,7 +2,6 @@ package rule;
 import Nodes.*;
 import direction.*;
 import token.*;
-import java.util.HashMap;
 import java.util.ArrayList;
 import game.*;
 
@@ -43,7 +42,8 @@ public class LinealRule<T extends Token, D extends Direction> implements Rule<T,
                     actualMarcador.update(cell, color, d.opposite());
                 }
             }
-            if (retbool) cell.clean(color); //si hubo match limpiar los colores de la casilla puesta
+            if (retbool)
+                cell.clean(color); //si hubo match limpiar los colores de la casilla puesta
         }
         return finalbool;
     }
