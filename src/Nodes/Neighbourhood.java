@@ -15,7 +15,6 @@ public class Neighbourhood<T extends Token, D extends Direction>{
 
     public Neighbourhood(){ neighbours = new HashMap<>();}
 
-
     public Cell<T, D> get(D dir){ return neighbours.get(dir);}
 
     public Set<D> getDirections(){return neighbours.keySet();}
