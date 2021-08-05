@@ -1,11 +1,8 @@
 package game;
-import Nodes.*;
 import token.*;
-import direction.*;
 import java.util.ArrayList;
-import java.util.Random;
 
-
+//Toda clase que extienda de Mostrador firma debe implementar el metodo fill y size, por lo que debe definir el size del mostrador
 public abstract class Mostrador<T extends Token>{
     protected ArrayList<Container<T>> mostrador;
 
@@ -13,11 +10,13 @@ public abstract class Mostrador<T extends Token>{
         mostrador = new ArrayList<>();
     }
 
-    public boolean isEmpty(){return size()==0;}
+    public boolean isEmpty(){return availableTokens()==0;}
 
     public abstract void fill();
 
     public abstract int size();
+
+    public abstract int availableTokens();
 
     public void showMostrador(){
         System.out.println("Mostrador: ");

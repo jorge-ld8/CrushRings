@@ -21,14 +21,11 @@ public abstract class Cell<T extends Token, D extends Direction>{
 
     public Container<T> getValue(){return value;}
 
-    //public HashMap<D, Cell<T, D>> getNeighbours(){return n.getNeighbours();}
-
     public void genAdjacency(Cell<T, D> otherNode, D direction) {
         n.addNeighbour(otherNode, direction);
         otherNode.n.addNeighbour(this, direction.opposite());
     }
 
-    //Overloading of method take so a variable of type container can be passed as an argument
     public boolean take(Container<T> container) {
         return getValue().take(container);
     }
@@ -39,9 +36,10 @@ public abstract class Cell<T extends Token, D extends Direction>{
 
     public int getColor(Color color){
         int cont=0;
-        for(Color currColor: getColors()) {
-             if(currColor == color)
-                 cont++;
+        for(T token: getTokens()) {
+            Color currColor = token.getColor();
+            if(currColor == color)
+                cont++;
         }
         return cont;
     }
@@ -52,15 +50,13 @@ public abstract class Cell<T extends Token, D extends Direction>{
         getValue().clean();
     }
 
-    public void clean(Color color){
-        getValue().clean(color);
-    }
+    public void clean(Color color){ getValue().clean(color);}
 
     public Cell<T, D> getNeighbour(D dir){return n.get(dir);}
 
     public Set<D> getNeighbours(){return n.getDirections();}
 
-    public ArrayList<Color> getColors(){ return getValue().getColors();}
+    public ArrayList<T> getTokens(){return getValue().getTokens();}
 
     public boolean equals(Cell<T, D> otherCell, Color currColor){
         return getValue().equals(otherCell.getValue(), currColor);

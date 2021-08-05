@@ -14,7 +14,7 @@ public final class TripleContainer extends Container<Token>{
             this.take(token);
     }
 
-    public TripleContainer(){
+    public TripleContainer(){ //Overloaded
         tokens = new ArrayList<>();
         tokens.add(new SmallRing());
         tokens.add(new MidRing());
@@ -22,9 +22,11 @@ public final class TripleContainer extends Container<Token>{
     }
 
     public boolean equals(Container<Token> ob, Color color){
-        for(Color currColor: getColors()){
+        for(Token token: getTokens()){
+            Color currColor = token.getColor();
             if(currColor == color) {
-                for (Color otherColor : ob.getColors()) {
+                for (Token token1 : ob.getTokens()) {
+                    Color otherColor = token1.getColor();
                     if(otherColor == currColor)
                         return true;
                 }

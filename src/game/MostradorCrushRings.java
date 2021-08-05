@@ -6,14 +6,16 @@ public class MostradorCrushRings extends Mostrador<Token>{
     public static int tiposFicha = 3;
     public MostradorCrushRings(){
         super();
-        mostrador.add(new TripleContainer(new SmallRing(Color.GREEN)));
-        mostrador.add(new TripleContainer(new SmallRing(Color.GREEN)));
-        mostrador.add(new TripleContainer(new SmallRing(Color.GREEN)));
+        for(int i=0; i<size(); i++)
+            mostrador.add(new TripleContainer(new SmallRing(Color.GREEN)));
         this.fill();
     }
 
     @Override
-    public int size(){
+    public int size(){return 3;}
+
+    @Override
+    public int availableTokens(){
         int cont=0;
         for(Container<Token> token: mostrador){
             if(token.isNotEmpty())
@@ -25,7 +27,7 @@ public class MostradorCrushRings extends Mostrador<Token>{
     @Override
     public void fill(){
         Random random = new Random();
-        for(int i=0; i<mostrador.size(); i++) {
+        for(int i=0; i<size(); i++) {
             //Random seed para la cantidad de container
             int qContainer = random.nextInt( 2)+1;
             Token[] containers = new Token[qContainer];

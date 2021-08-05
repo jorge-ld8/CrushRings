@@ -15,7 +15,7 @@ public abstract class Board<T extends Token, D extends Direction, C extends Cell
 
     public boolean placeTokenAtCell(Container<T> container, C cell){return cell.take(container);}
 
-    public boolean isAPlay(Container<T> container){
+    public boolean isAPlay(Container<T> container){ //Breadth first search busqueda en el grafo
         Cell<T, D> currCell = getCell(1);
         ArrayList<Cell<T,D>> explored = new ArrayList<>();
         explored.add(currCell);

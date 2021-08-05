@@ -20,16 +20,7 @@ public abstract class Container<T extends Token>{
 
     public abstract void clean();
 
-    public abstract void clean(Color color);
-
-    public ArrayList<Color> getColors(){
-        ArrayList<Color> colorsList = new ArrayList<>();
-        for(Token token: tokens) {
-            if(token.isNotNil())
-                colorsList.add(token.getColor());
-        }
-        return colorsList;
-    }
+    public abstract void clean(Color color); //Overloaded
 
     public ArrayList<T> getTokens() {
         ArrayList<T> tokensList = new ArrayList<>();

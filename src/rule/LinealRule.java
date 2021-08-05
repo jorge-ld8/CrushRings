@@ -29,23 +29,30 @@ public class LinealRule<T extends Token, D extends Direction> implements Rule<T,
             return true;
         }
 
-        ArrayList<Color> colorsList = cell.getColors();
-        for(Color color: colorsList) {
+        for(T token: cell.getTokens()) {
+            Color currColor = token.getColor();
             retbool=false;
             for (D d : cell.getNeighbours()) {
-                boolean isLinealMatch = matchlineal(cell, d, color) && matchlineal(cell, d.opposite(), color);
+                boolean isLinealMatch = matchlineal(cell, d, currColor) && matchlineal(cell, d.opposite(), currColor);
                 if (isLinealMatch) {
                     retbool = true;
                     finalbool = true;
-                    actualMarcador.increment(cell.getColor(color));
-                    actualMarcador.update(cell, color, d);
-                    actualMarcador.update(cell, color, d.opposite());
+                    actualMarcador.increment(cell.getColor(currColor));
+                    actualMarcador.update(cell, currColor, d);
+                    actualMarcador.update(cell, currColor, d.opposite());
                 }
             }
             if (retbool)
-                cell.clean(color); //si hubo match limpiar los colores de la casilla puesta
+                cell.clean(currColor); //si hubo match limpiar los colores de la casilla puesta
         }
         return finalbool;
+    }
+
+    public boolean pruebaMatch(Cell<T, D> cell){
+        if(matchtriple(cell))
+            return true;
+        else
+            return false;
     }
 }
 
