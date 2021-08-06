@@ -19,4 +19,8 @@ public class MidRing extends Ring{
     public String toString(){
         return String.format("%s %-10s%s", getColor().getColorRepresentation(), "MID " + super.toString(), ColorConstants.TEXT_RESET);
     }
+
+    public void draw(){
+        System.out.printf("%s %-10s%s", getColor().getColorRepresentation(), "MID " + super.toString(), ColorConstants.TEXT_RESET);
+    }
 }
