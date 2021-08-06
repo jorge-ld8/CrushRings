@@ -1,7 +1,6 @@
 package token;
 import java.util.ArrayList;
 
-//TODO: Find out how to deal with mutability of returning an ArrayList
 public final class TripleContainer extends Container<Token>{
     public TripleContainer(Token...ts){
         if(ts.length>3)

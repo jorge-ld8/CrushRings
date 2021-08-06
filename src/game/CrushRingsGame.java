@@ -1,6 +1,7 @@
 package game;
 import Nodes.*;
 import board.SquareBoard;
+import functionalInterfaces.Drawable;
 import rule.LinealRule;
 import token.*;
 import direction.*;
@@ -13,7 +14,7 @@ import java.util.Scanner;
 //abstraer para que en vez de un solo token sea un Container (extensible para 1 o mas tokens)
 
 //TODO: cambiar diseño de clases Marcador y Lineal Rule tal que Regla solo se encargue de decir si hay match y marcador solo de contar puntos
-public class CrushRingsGame extends MatchGame<Token, Octagonal, RoundCell<Token, Octagonal>, SquareBoard> {
+public class CrushRingsGame extends MatchGame<Token, Octagonal, RoundCell<Token, Octagonal>, SquareBoard> implements Drawable {
     @Override
     public void initGame() {
         //initialize game entities
@@ -28,36 +29,37 @@ public class CrushRingsGame extends MatchGame<Token, Octagonal, RoundCell<Token,
     }
 
     private void mainGame(){
+        Container<Token> currToken;
+        RoundCell<Token, Octagonal> currCell;
+
         //mostrar marcador y tablero
         getBoard().draw();
         getMostrador().draw();
 
         //game main loop
-        Container<Token> currToken;
-        RoundCell<Token, Octagonal> currCell;
         outer:
         do{
             do{
-                currToken = readToken();
-                if(!currToken.isNotEmpty()) { //way to exit the program before finishing
+                currToken = readToken(); // tomar ficha
+                if(!currToken.isNotEmpty()) { //manera de salirse del programa antes de terminar
                     setGamestate(GameState.LOST);
                     continue outer;
                 }
-                currCell = readCell();
+                currCell = readCell(); //elegir casilla
                 System.out.println();
             }while(!getBoard().placeTokenAtCell(currToken, currCell));
+
 
             handleMatch(currCell);
 
             getMarcador().increment(currToken);
-            getMostrador().clean(currToken); //remove currToken from mostrador
-
-            getBoard().draw();
-            getMarcador().showCont();
+            getMostrador().clean(currToken);
             if(getMostrador().isEmpty())
                 getMostrador().fill();
-            getMostrador().draw();
+
+            draw();
             updateGame();
+
         }while(getGamestate() == GameState.GOING);
     }
 
@@ -121,6 +123,12 @@ public class CrushRingsGame extends MatchGame<Token, Octagonal, RoundCell<Token,
         }
         else
             getMarcador().resetCombo();
+    }
+
+    public void draw(){
+        getBoard().draw();
+        getMarcador().showCont();
+        getMostrador().draw();
     }
 }
 

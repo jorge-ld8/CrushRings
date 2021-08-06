@@ -5,17 +5,6 @@ import token.*;
 import Nodes.*;
 
 public class MarcadorCrushRings<T extends Token, D extends Direction> extends Marcador<T, D> {
-    /*public void update(Cell<Token, Octagonal> cell, Color color, Octagonal direction) {
-        for (Octagonal d : cell.getNeighbours()) {
-            if (d == direction) {
-                Cell<Token, Octagonal> currTile = cell.getNeighbour(d);
-                increment(currTile.getColor(color));
-                update(currTile, color, d);
-                currTile.clean(color);
-            }
-        }
-    }*/
-
     private void updateInDir(Cell<T, D> cell, Color color, D direction) {
         for (D d : cell.getNeighbours()) {
             if (d == direction) {

@@ -9,7 +9,7 @@ public class boardTest {
     public static void main(String[] args) {
         SquareBoard myBoard = new SquareBoard();
         LinealRule<Token, Octagonal> myRule = new LinealRule<>();
-        Marcador<Token, Octagonal> myMarcador = new MarcadorCrushRings();
+        Marcador<Token, Octagonal> myMarcador = new MarcadorCrushRings<>();
         myBoard.placeTokenAtCell(new TripleContainer(new SmallRing(Color.BLUE)), myBoard.getCell(1));
         myBoard.placeTokenAtCell(new TripleContainer(new SmallRing(Color.BLUE)), myBoard.getCell(7));
         myBoard.placeTokenAtCell(new TripleContainer(new BigRing(Color.CYAN)), myBoard.getCell(5));

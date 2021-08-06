@@ -9,6 +9,6 @@ public class ColorConstants {
     public static final String TEXT_YELLOW = "\033[1;93m";
     public static final String TEXT_BLUE = "\u001B[1;34m";
     public static final String TEXT_PURPLE = "\u001B[1;35m";
-    public static final String TEXT_CYAN =  "\u001B[1;36m1";
+    public static final String TEXT_CYAN =  "\u001B[1;36m";
     public static final String TEXT_WHITE = "\033[1;97m";
 }
