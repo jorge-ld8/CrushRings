@@ -1,6 +1,7 @@
 package token;
+import functionalInterfaces.Drawable;
 
-public abstract class Token {
+public abstract class Token implements Drawable {
     protected Color color;
 
     //getters

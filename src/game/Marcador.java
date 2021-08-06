@@ -6,7 +6,7 @@ import direction.*;
 public abstract class Marcador<T extends Token, D extends Direction>{
     private  int cont;
 
-    public static final int pointVal = 1; //valor por ficha en match
+    public static final int POINT_VAL = 1; //valor por ficha en match
 
     private final PointCombo combo = new PointCombo();
 
@@ -21,9 +21,9 @@ public abstract class Marcador<T extends Token, D extends Direction>{
         System.out.println();
     }
 
-    public void increment(int incRate){ cont+=pointVal*incRate*combo.getMultiplier();}
+    public void increment(int incRate){ cont+=POINT_VAL*incRate*combo.getMultiplier();}
 
-    public void increment(Container<T> container){cont += pointVal*container.getTokens().size();}
+    public void increment(Container<T> container){cont += POINT_VAL*container.getTokens().size();}
 
     public abstract void update(Cell<T, D> cell);
 

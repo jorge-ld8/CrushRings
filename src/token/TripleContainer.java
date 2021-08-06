@@ -79,4 +79,9 @@ public final class TripleContainer extends Container<Token>{
     public String toString(){
         return String.format("  %s  %s  %s  ", tokens.get(0), tokens.get(1), tokens.get(2));
     }
+
+    @Override
+    public void draw() {
+        System.out.printf("  %s  %s  %s  ", tokens.get(0), tokens.get(1), tokens.get(2));
+    }
 }

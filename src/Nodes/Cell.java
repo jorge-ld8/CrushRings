@@ -1,6 +1,5 @@
 package Nodes;
 import java.util.ArrayList;
-import java.util.HashMap;
 import direction.Direction;
 import functionalInterfaces.*;
 import token.*;

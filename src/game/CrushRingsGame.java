@@ -5,16 +5,13 @@ import functionalInterfaces.Drawable;
 import rule.LinealRule;
 import token.*;
 import direction.*;
-
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
 //implementar metodos de juego
 //abstraer para que en vez de un solo token sea un Container (extensible para 1 o mas tokens)
-
-//TODO: cambiar diseño de clases Marcador y Lineal Rule tal que Regla solo se encargue de decir si hay match y marcador solo de contar puntos
-public class CrushRingsGame extends MatchGame<Token, Octagonal, RoundCell<Token, Octagonal>, SquareBoard> implements Drawable {
+public class CrushRingsGame extends MatchGame<Token, Octagonal, RoundCell<Token, Octagonal>> implements Drawable {
     @Override
     public void initGame() {
         //initialize game entities
@@ -49,7 +46,6 @@ public class CrushRingsGame extends MatchGame<Token, Octagonal, RoundCell<Token,
                 System.out.println();
             }while(!getBoard().placeTokenAtCell(currToken, currCell));
 
-
             handleMatch(currCell);
 
             getMarcador().increment(currToken);
@@ -58,7 +54,7 @@ public class CrushRingsGame extends MatchGame<Token, Octagonal, RoundCell<Token,
                 getMostrador().fill();
 
             draw();
-            updateGame();
+            updateGame(); //actualizar estado del juego
 
         }while(getGamestate() == GameState.GOING);
     }

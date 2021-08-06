@@ -5,9 +5,9 @@ import Nodes.*;
 import board.*;
 import rule.*;
 
-public abstract class MatchGame<T extends Token, D extends Direction, C extends Cell<T,D>, B extends Board<T, D, C>>{
+public abstract class MatchGame<T extends Token, D extends Direction, C extends Cell<T,D>>{
     private GameState gamestate;
-    private B board;
+    private Board<T, D, C> board;
     private Rule<T, D> rule;
     private Marcador<T, D> marcador;
     private Mostrador<T> mostrador;
@@ -16,11 +16,11 @@ public abstract class MatchGame<T extends Token, D extends Direction, C extends 
 
     public void setRule(Rule<T, D> rule){ this.rule = rule;}
 
-    public void setBoard(B board){
+    public void setBoard(Board<T, D, C> board){
         this.board = board;
     }
 
-    public B getBoard() {
+    public Board<T, D, C> getBoard() {
         return board;
     }
 
