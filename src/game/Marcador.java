@@ -23,18 +23,12 @@ public abstract class Marcador<T extends Token, D extends Direction>{
 
     public void increment(int incRate){ cont+=pointVal*incRate*combo.getMultiplier();}
 
-    public abstract void update(Cell<T, D> cell, Color color, D direction);
+    public void increment(Container<T> container){cont += pointVal*container.getTokens().size();}
+
+    public abstract void update(Cell<T, D> cell);
 
     public void  resetCombo(){combo.reset();}
 
     public void combo(){ combo.incMultiplier();}
-
-    public void pruebaUpdate(Cell<T, D> cell){
-        //prueba de una update de puntos
-    }
 }
-
-/*public void update(Cell<T, D> cell, Color color){
-}
- */
 

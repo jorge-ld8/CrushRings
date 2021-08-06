@@ -11,20 +11,14 @@ import java.util.Set;
 un una nueva forma de casilla solo se debe extender de esta y sobreescribir el metodo draw
 */
 //NOTA: abstraer take so it can take any container
-public abstract class Cell<T extends Token, D extends Direction> implements Drawable, Cleanable {
-    private final Container<T> value;
-    private final Neighbourhood<T, D> n;
-
+public abstract class Cell<T extends Token, D extends Direction> extends Node<Container<T>, D> implements Drawable, Cleanable {
     public Cell(Container<T> value){
-        this.value = value;
-        n = new Neighbourhood<>();
+        super(value);
     }
 
-    public Container<T> getValue(){return value;}
-
     public void genAdjacency(Cell<T, D> otherNode, D direction) {
-        n.addNeighbour(otherNode, direction);
-        otherNode.n.addNeighbour(this, direction.opposite());
+        getN().addNeighbour(otherNode, direction);
+        otherNode.getN().addNeighbour(this, direction.opposite());
     }
 
     public boolean take(Container<T> container) {
@@ -45,6 +39,17 @@ public abstract class Cell<T extends Token, D extends Direction> implements Draw
         return cont;
     }
 
+    public boolean matchLineal(D dir, Color color){
+        for(D direction: getNeighbours()){
+            Cell<T, D> currNeighbour = getNeighbour(direction);
+            if(dir == direction && currNeighbour.equals(this, color))
+                return currNeighbour.matchLineal(dir, color);
+            else if(dir == direction)
+                return false;
+        }
+        return true;
+    }
+
     public boolean sameVal(){return getValue().sameVal();}
 
     public void clean(){
@@ -53,9 +58,9 @@ public abstract class Cell<T extends Token, D extends Direction> implements Draw
 
     public void clean(Color color){ getValue().clean(color);}
 
-    public Cell<T, D> getNeighbour(D dir){return n.get(dir);}
+    public Cell<T, D> getNeighbour(D dir){return (Cell<T, D>) getN().get(dir);}
 
-    public Set<D> getNeighbours(){return n.getDirections();}
+    public Set<D> getNeighbours(){return getN().getDirections();}
 
     public ArrayList<T> getTokens(){return getValue().getTokens();}
 

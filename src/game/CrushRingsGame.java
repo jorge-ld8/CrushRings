@@ -20,7 +20,7 @@ public class CrushRingsGame extends MatchGame<Token, Octagonal, RoundCell<Token,
         setBoard(new SquareBoard());
         setGamestate(GameState.GOING);
         setRule(new CrushRingsRule());
-        setMarcador(new MarcadorCrushRings());
+        setMarcador(new MarcadorCrushRings<>());
         setMostrador(new MostradorCrushRings());
 
         //game main loop
@@ -47,14 +47,10 @@ public class CrushRingsGame extends MatchGame<Token, Octagonal, RoundCell<Token,
                 System.out.println();
             }while(!getBoard().placeTokenAtCell(currToken, currCell));
 
-            getMostrador().update(currToken); //remove currToken from mostrador
+            handleMatch(currCell);
 
-            boolean hayMatch = getRule().match(currCell, getMarcador());
-           /* for(Token token: currCell.getTokens()){
-                if(getRule().match(currCell))
-
-            }*/
-            if(hayMatch) System.out.println("HAY MATCH!");
+            getMarcador().increment(currToken);
+            getMostrador().clean(currToken); //remove currToken from mostrador
 
             getBoard().draw();
             getMarcador().showCont();
@@ -116,6 +112,17 @@ public class CrushRingsGame extends MatchGame<Token, Octagonal, RoundCell<Token,
         System.out.printf("GAME OVER!\n\nPUNTAJE: %d", getMarcador().getCont());
         setGamestate(GameState.LOST);
     }
+
+    private void handleMatch(Cell<Token, Octagonal> currCell){
+        boolean hayMatch = getRule().match(currCell);
+        if(hayMatch) {
+            getMarcador().update(currCell);
+            System.out.println("HAY MATCH!!");
+        }
+        else
+            getMarcador().resetCombo();
+    }
 }
 
 class CrushRingsRule extends LinealRule<Token, Octagonal>{}
+//class MarcadorCrushRings1 extends MarcadorCrushRings<Token, Octagonal>{}

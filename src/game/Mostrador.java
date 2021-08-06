@@ -29,7 +29,8 @@ public abstract class Mostrador<T extends Token> implements Drawable {
         return retContainer;
     }
 
-    public void update(Container<T> updateContainer){ updateContainer.clean();}
+    public void clean(Container<T> updateContainer){ updateContainer.clean();}
+
 }
 
 

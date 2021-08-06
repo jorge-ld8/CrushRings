@@ -6,5 +6,6 @@ import token.*;
 
 /*Interfaz regla que cualquier regla nueva que se quiera añadir debe implementarla*/
 public interface Rule<T extends Token, D extends Direction> {
-    boolean match(Cell<T, D> currTile, Marcador<T, D> actualMarcador); //clase abstracta match que se encargara de retornar si hay match o no
+    //boolean match(Cell<T, D> currTile, Marcador<T, D> actualMarcador); //clase abstracta match que se encargara de retornar si hay match o no
+    boolean match(Cell<T, D> currCell);
 }
